@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://theme/maintheme.tres" type="Theme" id=1]
+[ext_resource path="res://menu/hud/smrtiskull.png" type="Texture" id=2]
+[ext_resource path="res://menu/hud/hud.gd" type="Script" id=3]
+
+[node name="HUD" type="CanvasLayer"]
+layer = 20
+script = ExtResource( 3 )
+
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SmrtiLabel" type="Label" parent="Control"]
+margin_left = 54.0
+margin_top = 9.0
+margin_right = 246.0
+margin_bottom = 64.0
+custom_colors/font_color = Color( 1, 0.32549, 0.32549, 1 )
+text = "Smrti: 15"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="Control/SmrtiLabel"]
+position = Vector2( -27, 27 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="LevelLabel" type="Label" parent="Control"]
+margin_left = 954.0
+margin_top = 9.0
+margin_right = 1144.0
+margin_bottom = 64.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Level: 15"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimerLabel" type="Label" parent="Control"]
+margin_left = 945.0
+margin_top = 576.0
+margin_right = 1118.0
+margin_bottom = 631.0
+text = "12:23.324"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]

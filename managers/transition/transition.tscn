@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://managers/transition/transition.gd" type="Script" id=1]
+[ext_resource path="res://textures/background.png" type="Texture" id=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+uniform float progress : hint_range(0,2) = 0.0;
+uniform float nesto1;
+uniform float nesto2;
+uniform sampler2D transition_texture;
+void fragment()
+{
+	if(-UV.x + UV.y/progress + nesto2< progress*2.0 && !(-UV.x + UV.y/progress + nesto1/progress < progress)) {
+		COLOR = texture(transition_texture,SCREEN_UV);
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/progress = 0.0
+shader_param/nesto1 = 2.0
+shader_param/nesto2 = 0.607
+shader_param/transition_texture = ExtResource( 2 )
+
+[node name="Transition" type="CanvasLayer"]
+layer = 21
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource( 2 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.231373, 0.231373, 0.231373, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]

@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://other/ancientfire.material" type="Material" id=1]
+[ext_resource path="res://levels/traps/rocketlauncher/rocket/explosion.png" type="Texture" id=2]
+[ext_resource path="res://levels/traps/rocketlauncher/rocket/rocketparticles.gd" type="Script" id=3]
+
+[node name="AncientFireParticles" type="Particles2D"]
+amount = 120
+lifetime = 2.0
+preprocess = 2.0
+process_material = ExtResource( 1 )
+texture = ExtResource( 2 )
+script = ExtResource( 3 )

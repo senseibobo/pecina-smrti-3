@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://bosses/darko/attacks/second/laser.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 864, 16.4924 )
+
+[node name="Laser" type="Line2D"]
+modulate = Color( 3.34118, 1.30196, 1.30196, 1 )
+position = Vector2( 19.3552, -0.33371 )
+scale = Vector2( 1, 0.02 )
+points = PoolVector2Array( 0, 0, 1728, 0 )
+width = 32.0
+default_color = Color( 1, 1, 1, 1 )
+begin_cap_mode = 2
+antialiased = true
+script = ExtResource( 1 )
+
+[node name="Line2D" type="Line2D" parent="."]
+show_behind_parent = true
+points = PoolVector2Array( 0, 0, 1728, 0 )
+width = 40.0
+default_color = Color( 1, 0, 0, 1 )
+begin_cap_mode = 2
+antialiased = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 864, 0 )
+shape = SubResource( 1 )
+disabled = true
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

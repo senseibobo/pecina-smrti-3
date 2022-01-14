@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/murder_machine.ogg-4a285077f6ca9c0069321c8d268c4f63.oggstr"
+
+[deps]
+
+source_file="res://audio/music/murder_machine.ogg"
+dest_files=[ "res://.import/murder_machine.ogg-4a285077f6ca9c0069321c8d268c4f63.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
