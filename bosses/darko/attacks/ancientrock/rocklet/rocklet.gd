@@ -1,12 +1,9 @@
-extends Node2D
+extends Projectile
 
-var gravity : float = 400
-var velocity : Vector2
+var fall_speed : float = 400
 
-func _process(delta):
-	velocity.y += gravity*delta
-	global_position += velocity*delta
-
-
-func _on_Area2D_body_entered(body):
-	body.death()
+func _physics_process(delta):
+	var velocity = direction*speed
+	velocity.y += fall_speed*delta
+	direction = velocity.normalized()
+	speed = velocity.length()

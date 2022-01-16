@@ -13,7 +13,9 @@ func create_rocklets():
 		var dir = i*2-1
 		for j in range(3):
 			var rocklet = preload("res://bosses/darko/attacks/ancientrock/rocklet/rocklet.tscn").instance()
-			rocklet.velocity = Vector2(dir*300,-150-j*150)
+			var velocity = Vector2(dir*300,-(j+1)*150)
+			rocklet.speed = velocity.length()
+			rocklet.direction = velocity.normalized()
 			rocklet.global_position = global_position
 			get_parent().call_deferred("add_child",rocklet)
 

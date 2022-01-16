@@ -11,5 +11,5 @@ dest_files=[ "res://.import/sn_explosion.ogg-e186e34cefeacdb5762428eb48b42921.og
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

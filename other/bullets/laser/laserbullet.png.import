@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/boxbutton.png-729be360d3a60d4980c4ef661b27e53b.stex"
+path="res://.import/laserbullet.png-908171b742a7b1d94f9bc6ba230b75d9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/other/boxbutton/boxbutton.png"
-dest_files=[ "res://.import/boxbutton.png-729be360d3a60d4980c4ef661b27e53b.stex" ]
+source_file="res://other/bullets/laser/laserbullet.png"
+dest_files=[ "res://.import/laserbullet.png-908171b742a7b1d94f9bc6ba230b75d9.stex" ]
 
 [params]
 

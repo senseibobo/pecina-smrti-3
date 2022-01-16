@@ -15,37 +15,39 @@ onready var state_duration_left = 2
 onready var current_attack = 0
 const ATTACK_NUMBER = 5
 
-var attack_duration = [	2.2,2,2.5,1.5,1.2,
-						3.0,1.8,2.5,4  ,3]
+var attack_duration = [	2.2,	2.0,	3.1,	1.5,	1.2,
+						3.0,	1.8,	2.5,	4.0,	1.6]
+
+
 var idle_duration = 1
 
 onready var bhm = $BulletHellManager
 onready var sprite = $Darko/Sprite
-onready var name_label = $CanvasLayer/ColorRect2/Label
+onready var name_label = $CanvasLayer/Label
 onready var tween = $Tween
 onready var animplayer = $AnimationPlayer
 onready var darko = $Darko
 onready var timer = $Timer
 onready var shaderrect = $CanvasLayer/ShaderRect
-onready var healthbar = $CanvasLayer/ColorRect2
+onready var healthbar = $CanvasLayer/Healthbar/TextureProgress
 
 func _ready():
 	animplayer.play("birth")
 	match Game.darko_phase:
 		1:
-			if Game.get_audio().current_song != "darko":
-				Game.get_audio().play_music("darko")
+			if Audio.current_song != "darko":
+				Audio.play_music("darko")
 			sprite.texture = preload("res://bosses/darko/darko.png")
 		2:
-			if Game.get_audio().current_song != "darko2":
-				Game.get_audio().play_music("darko2")
+			if Audio.current_song != "darko2":
+				Audio.play_music("darko2")
 			sprite.modulate = Color(2.5,2.5,2.5,1)
 			sprite.texture = preload("res://bosses/darko/darko2.png")
 			name_label.text = "DARKO - OLICENJE ZLA"
 			health = max_health
 func choose_attack():
-#	current_attack = [4,4][randi()%2]
-#	return
+	current_attack = [4,4][randi()%2]
+	return
 	if ATTACK_NUMBER <= 1: 
 		current_attack = 0
 		return
@@ -83,6 +85,9 @@ func launch_bloodball(pos = null, rot = null,target = Game.get_player()):
 	else:
 		if rot == null:	bloodball.direction = Vector2.DOWN
 		else:			bloodball.direction = Vector2.RIGHT.rotated(rot)
+	return bloodball
+	
+	
 func second_attack(): #create 15 laserguns that aim with at most 10 degree tilt from down
 	relocate_to(Vector2(576,120),0.5)
 	yield(tween,"tween_completed")
@@ -96,9 +101,11 @@ func create_lasergun(pos,rot,prep,time,scale = Vector2(1,1)):
 	lasergun.time = time
 	lasergun.scale = scale
 	Game.get_world().add_child(lasergun)
+	
+	
 func third_attack(): #go side to side 4 times and launch 5 balls to the other side with 1 ball missing
 	var dir = randi()%2
-	for _i in range(4):
+	for _i in range(5):
 		if state == states.dying and state == states.reviving: return
 		dir = (dir+1)%2
 		relocate_to(Vector2(20+dir*1132,120),0.2)
@@ -106,10 +113,13 @@ func third_attack(): #go side to side 4 times and launch 5 balls to the other si
 		var missing = randi()%3/2+3
 		for j in range(5):
 			if j == missing: continue
-			var pos = Vector2(20+dir*1112,160+j*80)
+			var pos = Vector2(30+dir*1092,160+j*80)
 			var rot = 0.0 if dir == 0 else PI
-			launch_bloodball(pos,rot,null)
-		timer.start(0.5); yield(timer, "timeout")
+			var bloodball = launch_bloodball(pos,rot,null)
+			bloodball.acceleration = 600
+		timer.start(0.3); yield(timer, "timeout")
+		
+		
 func fourth_attack(): #go from one side to almost the other and shower the floor with balls
 	var dir = randi()%2
 	relocate_to(Vector2(50+dir*1052,96),0.6)
@@ -122,6 +132,8 @@ func fourth_attack(): #go from one side to almost the other and shower the floor
 		if state == states.dying and state == states.reviving: return
 		launch_bloodball(darko.global_position,deg2rad(90))
 		timer.start(time/ball_count); yield(timer, "timeout")
+		
+		
 func fifth_attack(): #| | | | | | | laser
 	relocate_to(Vector2(576,50),0.3)
 	var current_place = 0
@@ -137,6 +149,8 @@ func fifth_attack(): #| | | | | | | laser
 		timer.start(0.15); yield(timer, "timeout")
 		for j in range(9):
 			create_lasergun(Vector2(offset+j*160+current_place,48),90,0.4,0.12)
+			
+			
 func alt_first_attack():
 	var current_angle = 0
 	var increment : float = [-1,1][randi()%2]
@@ -149,10 +163,12 @@ func alt_first_attack():
 		for j in range(3):
 			bhm.origin.global_position = darko.global_position
 			var angle = (increment+1)/2*PI+TAU*j/3 + current_angle
-			bhm.spawn_bullet(400,Vector2(1,0).rotated(angle),0)
+			bhm.spawn_bullet(NormalBullet.new(),400,Vector2(1,0).rotated(angle),0)
 		timer.start(0.05); yield(timer,"timeout")
 
+
 func alt_second_attack():
+	yield(get_tree().create_timer(0.4,false),"timeout")
 	relocate_to(Vector2(576,200))
 	for i in range(10):
 		for j in range(3):
@@ -162,6 +178,7 @@ func alt_second_attack():
 		timer.start(0.1); yield(timer,"timeout")
 		launch_bloodball(darko.global_position,null,Game.get_player())
 		timer.start(0.03); yield(timer,"timeout")
+
 
 func alt_third_attack():
 	var dir = (randi()%2)*2-1
@@ -183,6 +200,7 @@ func alt_third_attack():
 		
 		timer.start(1.0); yield(timer,"timeout")
 
+
 func alt_fourth_attack():
 	relocate_to(Vector2(576,50))
 	yield(tween,"tween_completed")
@@ -197,47 +215,45 @@ func alt_fourth_attack():
 		else:
 			rock.launch_towards(Vector2([0,1152][randi()%2],rand_range(300,600)))
 		timer.start(0.5); yield(timer,"timeout")
+		
+		
 func alt_fifth_attack():
-	var num := 6.0
+	var num := 14.0
 	var rand = rand_range(-0.1,0.1)
 	var ln := 40.0
 	relocate_to(Vector2(1076,100),0.35)
 	yield(tween,"tween_completed")
-	bhm.origin.global_position = darko.global_position
+	relocate_to(Vector2(76,100),num*0.05)
 	for i in range(num):
-		if state == states.dying: return
 		yield(get_tree().create_timer(0.05),"timeout")
+		if state == states.dying: return
+		bhm.origin.global_position = darko.global_position
 		for j in range(ln):
-			var bullet = bhm.spawn_bullet(100+pow((1+j/ln),1.8)*500,Vector2(0,1).rotated(PI/4+(i-num/2)/num*3*PI/4+rand))
+			var bullet = bhm.spawn_bullet(LaserBullet.new(),(pow((1+j/ln),2.3)-1)*500-700,Vector2(0,1).rotated((i-num/1.8)/(num)))
 			bullet.lifetime = lerp((ln-j)/ln,1,0.95)*7.6
+			bullet.index = j
 	rand = rand_range(-0.1,0.1)
-	relocate_to(Vector2(76,100),0.05)
-	yield(tween,"tween_completed")
-	bhm.origin.global_position = darko.global_position
-	rand = rand_range(-0.1,0.1)
+	relocate_to(Vector2(1076,100),num*0.05)
 	for i in range(num):
-		if state == states.dying: return
 		yield(get_tree().create_timer(0.05),"timeout")
+		if state == states.dying: return
+		bhm.origin.global_position = darko.global_position
 		for j in range(ln):
-			var bullet = bhm.spawn_bullet(100+pow((1+j/ln),1.8)*500,Vector2(0,1).rotated(-PI/4+(-i+num/2)/num*3*PI/4+rand))
+			var bullet = bhm.spawn_bullet(LaserBullet.new(),(pow((1+j/ln),2.3)-1)*500-700,Vector2(0,1).rotated((-i+num/2)/(num)))
+			var p = int(int(j)%2)
 			bullet.lifetime = lerp((ln-j)/ln,1,0.95)*7.6
+			bullet.index = j
 	
 		
 func relocate_to(pos,time = 0.2):
 	tween.interpolate_property(darko,"global_position",darko.global_position,pos,time)
 	tween.start()
+	
+	
 func death():
 	tween.stop_all()
 	if Game.darko_phase == 1 and Game.fires_collected >= 14:
-		Game.darko_phase = 2
-		state = states.reviving
-		animplayer.play("rebirth")
-		Game.get_audio().play_music("darko2")
-		timer.stop()
-		tween.interpolate_property(darko,"global_position",darko.global_position,Vector2(576,224),0.2)
-		tween.start()
-		yield(animplayer,"animation_finished")
-		_ready()
+		start_phase_2()
 		return
 	state = states.dying
 	animplayer.stop()
@@ -248,12 +264,26 @@ func death():
 	yield(animplayer,"animation_finished")
 	queue_free()
 	Game.complete()
+	
+	
+func start_phase_2():
+	Game.darko_phase = 2
+	state = states.reviving
+	animplayer.play("rebirth")
+	Audio.play_music("darko2")
+	timer.stop()
+	tween.interpolate_property(darko,"global_position",darko.global_position,Vector2(576,224),0.2)
+	tween.start()
+	yield(animplayer,"animation_finished")
+	_ready()
+	
+	
 func _process(delta):
 	if Game.darko_phase == 2:
 		shaderrect.get_material().set_shader_param("progress",pow(1-health/max_health,2))
 	if state != states.dying and state != states.reviving:
 		health -= delta
-	healthbar.rect_size.x = 648*(health/max_health)
+	healthbar.value = 100*health/max_health-2
 	if health <= 0 and state != states.dying and state != states.reviving:
 		death()
 	state_duration_left -= delta
@@ -267,6 +297,8 @@ func _process(delta):
 			states.attacking:
 				state = states.idle
 				state_duration_left = idle_duration
+				
+				
 func steal_fire():
 	var fire = preload("res://other/ancientfire.tscn").instance()
 	fire.get_node("Area2D").monitoring = false

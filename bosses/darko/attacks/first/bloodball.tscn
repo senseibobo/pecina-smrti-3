@@ -1,20 +1,21 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://bosses/darko/attacks/first/BloodballExplosion.tscn" type="PackedScene" id=1]
 [ext_resource path="res://bosses/darko/attacks/first/bloodball.png" type="Texture" id=2]
 [ext_resource path="res://bosses/darko/attacks/first/bloodball.gd" type="Script" id=3]
 [ext_resource path="res://bosses/darko/attacks/first/BloodballConstantParticles.tscn" type="PackedScene" id=4]
+[ext_resource path="res://audio/sfx/explosion/sn_explosion.ogg" type="AudioStream" id=5]
 
 [sub_resource type="CircleShape2D" id=9]
 radius = 17.0
 
 [node name="Bloodball" type="Area2D"]
-modulate = Color( 1.5, 1, 1, 1 )
-rotation = 0.507891
+modulate = Color( 1.36471, 1.34902, 1.34902, 1 )
 collision_layer = 0
 script = ExtResource( 3 )
 constant_particles_scene = ExtResource( 4 )
 hit_particles_scene = ExtResource( 1 )
+hit_sound = ExtResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 2, 2 )

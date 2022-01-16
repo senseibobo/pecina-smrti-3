@@ -7,6 +7,11 @@ var speed = 1000
 
 func _on_Area2D_body_entered(body):
 	body.fires_collected += 1
+	var particles = $AncientFireParticles
+	remove_child(particles)
+	Game.add_child(particles)
+	particles.queue_death()
+	
 	queue_free()
 
 func _process(delta):

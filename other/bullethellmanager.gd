@@ -9,27 +9,19 @@ export(Texture) var bullet_image
 
 var time = 0
 
-func spawn_bullet(speed,movement_vector,type = 1):
-	var bullet = Bullet.new()
+func spawn_bullet(bullet,speed,movement_vector,type = 1):
 	bullet.movement_vector = movement_vector
 	bullet.speed = speed
 	bullet.current_position = origin.position
-	bullet.type = type
+	bullet.rotate()
 	
 	_configure_collision_for_bullet(bullet)
 	
 	bullets.append(bullet)
 	return bullet
 	
-func _configure_collision_for_bullet(bullet: Bullet):
-	var used_transform := Transform2D(0,position)
-	used_transform.origin = bullet.current_position
-	
-	var circle_shape = Physics2DServer.circle_shape_create()
-	Physics2DServer.shape_set_data(circle_shape,8)
-	Physics2DServer.area_add_shape(shared_area.get_rid(),circle_shape,used_transform)
-	
-	bullet.shape_id = circle_shape
+func _configure_collision_for_bullet(bullet):
+	bullet.configure_collision(shared_area.get_rid())
 
 func _physics_process(delta):
 	#time += delta
@@ -39,14 +31,8 @@ func _physics_process(delta):
 	var bullets_queued_for_destruction := []
 	
 	for i in range(bullets.size()):
-		var bullet = bullets[i] as Bullet
-		var offset : Vector2 = bullet.movement_vector.normalized() * bullet.speed * delta/3.0
-		if bullet.type == 0:
-			bullet.speed = (200 + 700*pow(bullet.lifetime,4))
-		bullet.current_position += offset
-		bullet.lifetime += delta
-		var t = Transform2D(0,bullet.current_position)
-		Physics2DServer.area_set_shape_transform(shared_area.get_rid(),i,t)
+		var bullet = bullets[i]
+		bullet.process(shared_area.get_rid(),delta,i)
 		if bullet.lifetime > 10.0 or not Rect2(-100,-100,1300,800).has_point(bullet.current_position): 
 			bullets_queued_for_destruction.append(bullet)
 	for bullet in bullets_queued_for_destruction:
@@ -58,14 +44,14 @@ func _physics_process(delta):
 func _draw() -> void:
 	var offset = bullet_image.get_size() / 2.0
 	for bullet in bullets:
-		var color : Color = Color()
+		draw_set_transform(bullet.current_position,bullet.rotation,Vector2(1,1))
 		draw_texture_rect(
-			bullet_image,
-			Rect2(bullet.current_position,Vector2(20,20)),
+			bullet.texture,
+			Rect2(Vector2(),bullet.size),
 			false,
-			(Color(1.2,1.2,1.2,bullet.lifetime/2.3+0.8) if bullet.type == 0 else 
-			 Color(2.0,2.0,2.0,1.0))
+			bullet.get_modulate()
 		)
+		 
 	
 	
 	

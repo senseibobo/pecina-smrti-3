@@ -18,13 +18,18 @@ func reset():
 	laser_count = 0
 	sfx.stop()
 
+var song_start_positions = {
+	"paradox" : 0,
+	"darko" : 0,
+	"darko2" : 37
+}
+
 func play_music(music_name : String = "paradox"):
 	stop()
 	stream = music[music_name]
 	play()
 	current_song = music_name
-	if current_song == "darko2":
-		seek(37)
+	seek(song_start_positions[current_song])
 	
 func _ready():
 	play_music("paradox")
@@ -36,35 +41,31 @@ func death_sound():
 	sfx.stop()
 	sfx.stream = death_sfx[randi()%10]
 	sfx.play()
-	pass
 
-func explosion_sound():
+func play_sound(sound):
 	sfx.stop()
-	var explosion = preload("res://audio/sfx/explosion/sn_explosion.ogg")
-	explosion.loop = false
-	sfx.stream = explosion
+	sfx.stream = sound
 	sfx.play()
-	pass
-	
+
 func laser_sound():
 	laser_count += 1
 	if laser_count == 1:
 		sfx.stream = laser_sound
 		if not sfx.playing:
 			sfx.play()
-	pass
 
 func stop_laser():
 	laser_count -= 1
 	if laser_count == 0:
 		sfx.stop()
 
+var song_loop_positions = {
+	"paradox" : {"start" : 88.12, "end" : 197.2},
+	"darko" : {"start" : 28.7, "end" : 135.4},
+	"darko2" : {"start" : 53.35, "end" : 181.3}
+}
+
 func _process(_delta):
 	sfx.volume_db = volume_db
-	match current_song:
-		"darko": 
-			if get_playback_position() > 135.4: seek(28.7)
-		"paradox": 
-			if get_playback_position() > 197.2: seek(88.12)
-		"darko2":
-			if get_playback_position() > 181.3: seek(53.35)
+	if get_playback_position() > song_loop_positions[current_song]["end"]:
+		seek(song_loop_positions[current_song]["start"])

@@ -12,6 +12,7 @@ modulate = Color( 2, 2, 2, 1 )
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 3.4, 0, 0, 1 )
 scale = Vector2( 0.28125, 0.28125 )
 texture = ExtResource( 1 )
 
@@ -24,5 +25,8 @@ shape = SubResource( 1 )
 
 [node name="AncientFireParticles" parent="." instance=ExtResource( 3 )]
 modulate = Color( 1.01961, 0.2, 0.2, 1 )
+amount = 322
+lifetime = 1.06
+local_coords = false
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

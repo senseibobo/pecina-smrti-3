@@ -2,7 +2,7 @@
 
 [ext_resource path="res://other/ancientfire.material" type="Material" id=1]
 [ext_resource path="res://levels/traps/rocketlauncher/rocket/explosion.png" type="Texture" id=2]
-[ext_resource path="res://levels/traps/rocketlauncher/rocket/rocketparticles.gd" type="Script" id=3]
+[ext_resource path="res://levels/traps/rocketlauncher/rocket/particles.gd" type="Script" id=3]
 
 [node name="AncientFireParticles" type="Particles2D"]
 amount = 120

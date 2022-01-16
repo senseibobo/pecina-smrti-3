@@ -2,15 +2,14 @@ extends Node
 
 signal scene_changed
 
-var current_level : int = 1
+var current_level : int = 15
 var deaths : int = 0
 var fires_collected : int = 0
-var darko_phase = 1
+var darko_phase = 2
 
 onready var hud = preload("res://menu/hud/hud.tscn").instance()
 onready var pause = preload("res://menu/pause/pause.tscn").instance()
 onready var camera = preload("res://game/camera.tscn").instance()
-onready var audio = preload("res://audio/audio.tscn").instance()
 onready var mobilecontrols = preload("res://other/mobilecontrols.tscn").instance()
 
 func _ready():
@@ -18,7 +17,6 @@ func _ready():
 	add_child(hud)
 	add_child(pause)
 	add_child(camera)
-	add_child(audio)
 	hud.add_child(mobilecontrols)
 
 func complete():
@@ -56,9 +54,6 @@ func get_player() -> KinematicBody2D:
 func get_player_position() -> KinematicBody2D:
 	var player = get_player()
 	return player.global_position
-
-func get_audio():
-	return audio
 
 func create_death_particles():
 	var player = get_player()

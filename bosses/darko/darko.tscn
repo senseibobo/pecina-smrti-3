@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://bosses/darko/darko.png" type="Texture" id=1]
 [ext_resource path="res://bosses/darko/darko.gd" type="Script" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://theme/maintheme.tres" type="Theme" id=4]
 [ext_resource path="res://bosses/darko/darko2.png" type="Texture" id=5]
 [ext_resource path="res://other/bullethellmanager.tscn" type="PackedScene" id=6]
+[ext_resource path="res://textures/healthbar/hpbar1.png" type="Texture" id=7]
+[ext_resource path="res://textures/healthbar/hpbar2.png" type="Texture" id=8]
+[ext_resource path="res://textures/healthbar/hpbar3.png" type="Texture" id=9]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0.689922, 0.844961 )
@@ -346,21 +349,20 @@ anims/rebirth = SubResource( 9 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 3
 
-[node name="ColorRect2" type="ColorRect" parent="CanvasLayer"]
-margin_left = 252.0
-margin_top = 72.0
-margin_right = 900.0
-margin_bottom = 90.0
-color = Color( 1, 0.235294, 0.235294, 1 )
+[node name="ShaderRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource( 14 )
+anchor_right = 1.0
+anchor_bottom = 1.0
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="CanvasLayer/ColorRect2"]
-margin_left = -249.0
-margin_top = -63.0
-margin_right = 894.0
-margin_bottom = -8.0
+[node name="Label" type="Label" parent="CanvasLayer"]
+margin_left = 3.0
+margin_top = 9.0
+margin_right = 1146.0
+margin_bottom = 64.0
 theme = ExtResource( 4 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Darko"
@@ -369,10 +371,29 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ShaderRect" type="ColorRect" parent="CanvasLayer"]
-material = SubResource( 14 )
+[node name="Healthbar" type="Control" parent="CanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureProgress" type="TextureProgress" parent="CanvasLayer/Healthbar"]
+margin_left = 252.0
+margin_top = 70.0
+margin_right = 910.0
+margin_bottom = 88.0
+step = 0.0
+texture_under = ExtResource( 7 )
+texture_over = ExtResource( 9 )
+texture_progress = ExtResource( 8 )
+fill_mode = 6
+tint_progress = Color( 2, 0, 0, 1 )
+nine_patch_stretch = true
+stretch_margin_left = 8
+stretch_margin_top = 8
+stretch_margin_right = 8
+stretch_margin_bottom = 8
 __meta__ = {
 "_edit_use_anchors_": false
 }

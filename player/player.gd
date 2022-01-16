@@ -8,7 +8,7 @@ const JUMP_FORCE : float = 585.0
 const MAX_VELOCITY_Y : float = 2400.0
 
 onready var current_speed : float = SPEED
-onready var sprite = $CollisionShape2D/Sprite
+onready var sprite = $Sprite
 
 var frozen : bool = true
 var dying : bool = false
@@ -49,6 +49,9 @@ func flip_gravity():
 
 func _sprites():
 	sprite.frame = int(is_on_ceiling())
+	var move = Input.get_axis("move_left","move_right")
+	if move != 0:
+		sprite.scale.x = abs(sprite.scale.x)*move
 
 func _movement(delta):
 	if frozen: return
@@ -92,4 +95,4 @@ func death():
 	Game.shake_screen(20,0.7)
 	$Timer.start(0.15); yield($Timer,"timeout")
 	Game.restart_level()
-	Game.get_audio().death_sound()
+	Audio.death_sound()

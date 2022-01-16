@@ -13,7 +13,7 @@ var transitioning : bool = false
 
 
 func set_current_scene(scene):
-	Game.get_audio().reset()
+	Audio.reset()
 	if scene is String:
 		scene = load(scene)
 	var new_scene = scene as Object

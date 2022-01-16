@@ -53,7 +53,12 @@ random = false
 position = Vector2( 864, 72 )
 scale = Vector2( 3, 3 )
 speed = 0.0
-rotation_speed = 2.0
+rotation_speed = -2.0
+
+[node name="Sprite" parent="traps/Shuriken/Area2D" index="0"]
+flip_h = true
 
 [node name="AncientFire" parent="." instance=ExtResource( 6 )]
 position = Vector2( 633.973, 241.985 )
+
+[editable path="traps/Shuriken"]

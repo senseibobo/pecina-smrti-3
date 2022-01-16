@@ -27,10 +27,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="Sprite" parent="Control/SmrtiLabel"]
-position = Vector2( -27, 27 )
-scale = Vector2( 2, 2 )
+[node name="TextureRect" type="TextureRect" parent="Control/SmrtiLabel"]
+margin_left = -44.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = 44.0
 texture = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="LevelLabel" type="Label" parent="Control"]
 margin_left = 954.0

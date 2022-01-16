@@ -1,26 +1,31 @@
-extends Line2D
+extends Area2D
 
 var shot : bool = false
 
 var prep = 0.75
 var time = 0.75
 
+onready var line1 = $Lines/Line1
+onready var line2 = $Lines/Line2
+onready var lines = $Lines
+onready var tween = $Tween
+onready var timer = $Timer
+onready var collision = $CollisionShape2D
+
 func _ready():
 	scale = Vector2(1,0.05)
-	$Tween.interpolate_property(self,"modulate",Color(1.2,0,0,0.0),Color(1.3,0,0,1),prep-0.1,Tween.TRANS_SINE,Tween.EASE_OUT)
-	$Tween.start()
-	$Timer.start(prep); yield($Timer, "timeout")
-	$Tween.interpolate_property(self,"scale",scale,Vector2(1,1),0.03)
-	$Tween.start()
+	timer.start(prep); yield(timer, "timeout")
+	tween.interpolate_property(lines,"scale",scale,Vector2(1,1),0.03)
+	tween.start()
 	modulate = Color(1.6,1,1,1)
-	yield($Tween,"tween_completed")
-	$Area2D/CollisionShape2D.call_deferred("set_disabled",false)
-	Game.get_audio().laser_sound()
+	yield(tween,"tween_completed")
+	collision.call_deferred("set_disabled",false)
+	Audio.laser_sound()
 	shot = true
-	$Timer.start(time); yield($Timer, "timeout")
-	$Tween.interpolate_property(self,"scale",scale,Vector2(1,0),0.05)
-	$Tween.start()
-	yield($Tween,"tween_completed")
+	timer.start(time); yield(timer, "timeout")
+	tween.interpolate_property(lines,"scale",scale,Vector2(1,0),0.05)
+	tween.start()
+	yield(tween,"tween_completed")
 	death()
 
 func _process(_delta):
@@ -28,10 +33,10 @@ func _process(_delta):
 		scale.y = rand_range(0.75,1.25)
 
 func death():
-	Game.get_audio().stop_laser()
+	Audio.stop_laser()
 	if get_parent().has_method("done"):
 		get_parent().done()
 	queue_free()
 
-func _on_Area2D_body_entered(body):
+func body_entered(body):
 	body.death()

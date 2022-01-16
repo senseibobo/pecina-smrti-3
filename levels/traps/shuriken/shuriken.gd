@@ -7,7 +7,7 @@ export var rotation_speed : float = 8
 
 
 func _process(delta):
-	rotation += delta*rotation_speed
+	rotation -= delta*rotation_speed
 	position += direction.normalized()*speed*delta
 	if not disappearing:	
 		if global_position.x > 1200: global_position.x -= 1252

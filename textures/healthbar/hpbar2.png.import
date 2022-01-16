@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/boxbutton.png-729be360d3a60d4980c4ef661b27e53b.stex"
+path="res://.import/hpbar2.png-bd850b131af65c2bfb0e2a9de06fed71.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/other/boxbutton/boxbutton.png"
-dest_files=[ "res://.import/boxbutton.png-729be360d3a60d4980c4ef661b27e53b.stex" ]
+source_file="res://textures/healthbar/hpbar2.png"
+dest_files=[ "res://.import/hpbar2.png-bd850b131af65c2bfb0e2a9de06fed71.stex" ]
 
 [params]
 
