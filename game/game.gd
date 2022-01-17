@@ -2,10 +2,10 @@ extends Node
 
 signal scene_changed
 
-var current_level : int = 15
+var current_level : int = 1
 var deaths : int = 0
 var fires_collected : int = 0
-var darko_phase = 2
+var darko_phase = 1
 
 onready var hud = preload("res://menu/hud/hud.tscn").instance()
 onready var pause = preload("res://menu/pause/pause.tscn").instance()

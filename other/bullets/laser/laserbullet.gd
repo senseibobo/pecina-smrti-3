@@ -8,6 +8,8 @@ func _init():
 	size = texture.get_size() + Vector2(40,5)
 
 func process(area_rid,delta,i):
+	if lifetime > 8.3:
+		speed = 0
 	.process(area_rid,delta,i)
 
 func get_modulate():
@@ -15,8 +17,8 @@ func get_modulate():
 	return Color(c,c,c,1)
 
 func get_shape():
-	var shape = Physics2DServer.circle_shape_create()
-	Physics2DServer.shape_set_data(shape,2)
+	var shape = Physics2DServer.rectangle_shape_create()
+	Physics2DServer.shape_set_data(shape,Vector2(2.5,20))
 	return shape
 
 func set_transform(area_rid,i):

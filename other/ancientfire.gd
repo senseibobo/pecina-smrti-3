@@ -21,6 +21,10 @@ func _process(delta):
 		direction = lerp(direction,global_position.direction_to(destination),20*delta)
 		global_position += speed*direction.normalized()*delta
 		if global_position.distance_to(destination) < 20:
+			var particles = $AncientFireParticles
+			remove_child(particles)
+			Game.add_child(particles)
+			particles.queue_death()
 			queue_free()
 		
 

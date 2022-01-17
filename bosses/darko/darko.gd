@@ -7,7 +7,7 @@ enum states {
 	reviving
 }
 
-export var max_health : float = 45
+export var max_health : float = 35
 onready var health : float = max_health
 
 onready var state = states.idle
@@ -16,7 +16,7 @@ onready var current_attack = 0
 const ATTACK_NUMBER = 5
 
 var attack_duration = [	2.2,	2.0,	3.1,	1.5,	1.2,
-						3.0,	1.8,	2.5,	4.0,	1.6]
+						3.0,	1.8,	2.5,	4.0,	2.7]
 
 
 var idle_duration = 1
@@ -43,11 +43,11 @@ func _ready():
 				Audio.play_music("darko2")
 			sprite.modulate = Color(2.5,2.5,2.5,1)
 			sprite.texture = preload("res://bosses/darko/darko2.png")
-			name_label.text = "DARKO - OLICENJE ZLA"
+			name_label.text = "DARKO 2"
 			health = max_health
 func choose_attack():
-	current_attack = [4,4][randi()%2]
-	return
+#	current_attack = [4,4][randi()%2]
+#	return
 	if ATTACK_NUMBER <= 1: 
 		current_attack = 0
 		return
@@ -218,9 +218,9 @@ func alt_fourth_attack():
 		
 		
 func alt_fifth_attack():
-	var num := 14.0
+	var num := 12.0
 	var rand = rand_range(-0.1,0.1)
-	var ln := 40.0
+	var ln := 25.0
 	relocate_to(Vector2(1076,100),0.35)
 	yield(tween,"tween_completed")
 	relocate_to(Vector2(76,100),num*0.05)
@@ -303,5 +303,6 @@ func steal_fire():
 	var fire = preload("res://other/ancientfire.tscn").instance()
 	fire.get_node("Area2D").monitoring = false
 	fire.global_position = Game.get_player().global_position
+	fire.get_node("AncientFireParticles").preprocess = 0
 	Game.get_world().add_child(fire)
 	fire.fly_to(darko.global_position)
