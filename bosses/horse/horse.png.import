@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/darko2.png-6741a4a15b057af747244f13d74fc0c8.stex"
+path="res://.import/horse.png-d8e0449adbac7fe11811f9743c1887a0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://bosses/darko/darko2.png"
-dest_files=[ "res://.import/darko2.png-6741a4a15b057af747244f13d74fc0c8.stex" ]
+source_file="res://bosses/horse/horse.png"
+dest_files=[ "res://.import/horse.png-d8e0449adbac7fe11811f9743c1887a0.stex" ]
 
 [params]
 

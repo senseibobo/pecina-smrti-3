@@ -24,10 +24,10 @@ func update_deaths():
 	$Control/SmrtiLabel.modulate = Color(1,1,1,1)
 	$Tween.interpolate_property($Control/SmrtiLabel,"rect_scale",Vector2(1.2,1.2),Vector2(1,1),0.1)
 	$Tween.start()
-	yield($Tween,"tween_all_completed")
-	yield(get_tree().create_timer(1.3),"timeout")
-	$Tween.interpolate_property($Control/SmrtiLabel,"modulate",Color(1,1,1,1),Color(1,1,1,0),0.2)
-	$Tween.start()
+#	yield($Tween,"tween_all_completed")
+#	yield(get_tree().create_timer(1.3),"timeout")
+#	$Tween.interpolate_property($Control/SmrtiLabel,"modulate",Color(1,1,1,1),Color(1,1,1,0),0.2)
+#	$Tween.start()
 
 func update_level():
 	levellabel.set_text("Level: %s"%Game.current_level)

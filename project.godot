@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node2D",
+"class": "Boss",
+"language": "GDScript",
+"path": "res://bosses/boss.gd"
+}, {
 "base": "Reference",
 "class": "Bullet",
 "language": "GDScript",
@@ -40,6 +45,7 @@ _global_script_classes=[ {
 "path": "res://classes/projectiles.gd"
 } ]
 _global_script_class_icons={
+"Boss": "",
 "Bullet": "",
 "GameParticles": "",
 "LaserBullet": "",
@@ -61,6 +67,7 @@ SceneManager="*res://managers/scene/scenemanager.gd"
 Game="*res://game/game.gd"
 Environement="res://WorldEnvironment.tscn"
 Audio="*res://audio/audio.tscn"
+Tools="*res://game/tools.gd"
 
 [debug]
 

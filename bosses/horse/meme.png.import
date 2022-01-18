@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/darkomob.png-819b486b0502e35063ecc0a460ca59e5.stex"
+path="res://.import/meme.png-f765284542995250d834c494f0d96eea.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/darkomob.png"
-dest_files=[ "res://.import/darkomob.png-819b486b0502e35063ecc0a460ca59e5.stex" ]
+source_file="res://bosses/horse/meme.png"
+dest_files=[ "res://.import/meme.png-f765284542995250d834c494f0d96eea.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -31,5 +31,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0
