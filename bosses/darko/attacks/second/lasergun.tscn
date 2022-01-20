@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://levels/traps/rocketlauncher/rocketlauncher.png" type="Texture" id=1]
+[ext_resource path="res://bosses/darko/attacks/second/lasergun.png" type="Texture" id=1]
 [ext_resource path="res://bosses/darko/attacks/first/bloodball.png" type="Texture" id=2]
 [ext_resource path="res://bosses/darko/attacks/second/lasergun.gd" type="Script" id=3]
 
@@ -42,7 +42,11 @@ shader = SubResource( 1 )
 script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -24, 0 )
+rotation = -1.5708
 texture = ExtResource( 1 )
+hframes = 2
+vframes = 2
 
 [node name="shootpos" type="Position2D" parent="."]
 position = Vector2( 13, 0 )

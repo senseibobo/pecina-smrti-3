@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://textures/background.png" type="Texture" id=1]
+[ext_resource path="res://menu/main/mainmenu.gd" type="Script" id=2]
+[ext_resource path="res://menu/main/ScrollingBackground.gd" type="Script" id=3]
+[ext_resource path="res://theme/maintheme.tres" type="Theme" id=4]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_clip_content = true
+theme = ExtResource( 4 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollingBackground" type="Node2D" parent="."]
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Background" type="Sprite" parent="ScrollingBackground"]
+scale = Vector2( 1.6225, 1.6225 )
+texture = ExtResource( 1 )
+centered = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Background2" type="Sprite" parent="ScrollingBackground"]
+scale = Vector2( 1.6225, 1.6225 )
+texture = ExtResource( 1 )
+centered = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 515.0
+margin_top = 267.0
+margin_right = 636.0
+margin_bottom = 381.0
+alignment = 1
+
+[node name="Easy" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_right = 121.0
+margin_bottom = 55.0
+text = "Easy"
+
+[node name="Hard" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 59.0
+margin_right = 121.0
+margin_bottom = 114.0
+text = "Hard"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Easy" to="." method="easy"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Hard" to="." method="hard"]

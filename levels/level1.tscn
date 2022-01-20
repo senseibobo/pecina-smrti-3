@@ -43,10 +43,12 @@ rotation = 2.76111
 [node name="Deathball2" parent="traps" instance=ExtResource( 3 )]
 position = Vector2( 576, 270 )
 rotation = 2.76111
+difficulty = 2
 
 [node name="Deathball3" parent="traps" instance=ExtResource( 3 )]
 position = Vector2( 864, 270 )
 rotation = 2.76111
+difficulty = 2
 
 [node name="AncientFire" parent="." instance=ExtResource( 4 )]
 position = Vector2( 876.615, 53.8592 )

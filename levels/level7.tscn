@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://levels/tilesets/spikeset.tres" type="TileSet" id=1]
 [ext_resource path="res://levels/tilesets/tileset.tres" type="TileSet" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://levels/other/appearingfloor/appearingfloor.tscn" type="PackedScene" id=7]
 [ext_resource path="res://other/ancientfire.tscn" type="PackedScene" id=8]
 [ext_resource path="res://textures/background.png" type="Texture" id=9]
+[ext_resource path="res://levels/traps/shuriken/shuriken.tscn" type="PackedScene" id=10]
+[ext_resource path="res://levels/traps/star/star.tscn" type="PackedScene" id=11]
 
 [node name="World" type="Node2D"]
 
@@ -44,7 +46,7 @@ position = Vector2( 378, 522 )
 position = Vector2( 522, 414 )
 
 [node name="BoxButton" parent="traps" instance=ExtResource( 5 )]
-position = Vector2( 720, 180 )
+position = Vector2( 744, 180 )
 scale = Vector2( 1, -1 )
 trigger_trap_name = "AppearingFloor"
 
@@ -61,6 +63,38 @@ trigger_trap_name = "AppearingFloor2"
 [node name="AppearingFloor2" parent="traps" instance=ExtResource( 7 )]
 position = Vector2( 162, 162 )
 disappearing = true
+
+[node name="Star" parent="traps" instance=ExtResource( 11 )]
+position = Vector2( 525, 532 )
+difficulty = 2
+x_multiplier = 0.9
+
+[node name="Shuriken" parent="traps/Star" instance=ExtResource( 10 )]
+scale = Vector2( 2, 2 )
+difficulty = 2
+speed = 0.0
+teleporting = true
+rotation_speed = 0.5
+
+[node name="Shuriken" parent="traps/Star/Shuriken" instance=ExtResource( 10 )]
+position = Vector2( 0, -52 )
+scale = Vector2( 0.5, 0.5 )
+speed = 0.0
+
+[node name="Shuriken2" parent="traps/Star/Shuriken" instance=ExtResource( 10 )]
+position = Vector2( 0, 52 )
+scale = Vector2( 0.5, 0.5 )
+speed = 0.0
+
+[node name="Shuriken3" parent="traps/Star/Shuriken" instance=ExtResource( 10 )]
+position = Vector2( -52, 0 )
+scale = Vector2( 0.5, 0.5 )
+speed = 0.0
+
+[node name="Shuriken4" parent="traps/Star/Shuriken" instance=ExtResource( 10 )]
+position = Vector2( 52, 0 )
+scale = Vector2( 0.5, 0.5 )
+speed = 0.0
 
 [node name="AncientFire" parent="." instance=ExtResource( 8 )]
 position = Vector2( 162, 88 )

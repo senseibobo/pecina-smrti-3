@@ -85,12 +85,14 @@ func _movement(delta):
 		
 		if collision.collider.is_in_group("Death"):
 			death()
+	
 			
 func death():
 	if dying: return
 	dying = true
 	frozen = true
 	Game.deaths += 1
+	Game.emit_signal("player_death")
 	Game.update_deaths()
 	Game.shake_screen(20,0.7)
 	$Timer.start(0.15); yield($Timer,"timeout")

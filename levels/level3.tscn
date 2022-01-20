@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://levels/tilesets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://levels/tilesets/spikeset.tres" type="TileSet" id=6]
 [ext_resource path="res://other/ancientfire.tscn" type="PackedScene" id=7]
 [ext_resource path="res://textures/background.png" type="Texture" id=8]
+[ext_resource path="res://levels/traps/deathball/deathball.tscn" type="PackedScene" id=9]
+[ext_resource path="res://levels/traps/fallingspikes/fallingspikes.tscn" type="PackedScene" id=10]
 
 [node name="World" type="Node2D"]
 
@@ -51,3 +53,12 @@ disappearing = true
 
 [node name="Box" parent="traps" instance=ExtResource( 3 )]
 position = Vector2( 189, 369 )
+
+[node name="Deathball" parent="traps" instance=ExtResource( 9 )]
+position = Vector2( 290, 493 )
+difficulty = 2
+
+[node name="FallingSpikes" parent="traps" instance=ExtResource( 10 )]
+position = Vector2( 863, 821 )
+rotation = 3.14159
+difficulty = 2

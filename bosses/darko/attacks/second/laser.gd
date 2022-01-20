@@ -1,5 +1,7 @@
 extends Area2D
 
+signal shot
+
 var shot : bool = false
 
 var prep = 0.75
@@ -21,6 +23,7 @@ func _ready():
 	yield(tween,"tween_completed")
 	collision.call_deferred("set_disabled",false)
 	Audio.laser_sound()
+	emit_signal("shot")
 	shot = true
 	timer.start(time); yield(timer, "timeout")
 	tween.interpolate_property(lines,"scale",scale,Vector2(1,0),0.05)

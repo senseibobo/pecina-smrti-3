@@ -10,6 +10,16 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Reference",
+"class": "Attack",
+"language": "GDScript",
+"path": "res://bosses/attack.gd"
+}, {
+"base": "Node2D",
+"class": "Boss",
+"language": "GDScript",
+"path": "res://bosses/boss.gd"
+}, {
+"base": "Reference",
 "class": "Bullet",
 "language": "GDScript",
 "path": "res://other/bullet.gd"
@@ -38,20 +48,28 @@ _global_script_classes=[ {
 "class": "Projectile",
 "language": "GDScript",
 "path": "res://classes/projectiles.gd"
+}, {
+"base": "Area2D",
+"class": "Trap",
+"language": "GDScript",
+"path": "res://levels/traps/trap.gd"
 } ]
 _global_script_class_icons={
+"Attack": "",
+"Boss": "",
 "Bullet": "",
 "GameParticles": "",
 "LaserBullet": "",
 "NormalBullet": "",
 "Player": "",
-"Projectile": ""
+"Projectile": "",
+"Trap": ""
 }
 
 [application]
 
 config/name="Pecina Smrti III"
-run/main_scene="res://levels/level1.tscn"
+run/main_scene="res://menu/main/mainmenu.tscn"
 boot_splash/image="res://textures/pecinasmrti3.png"
 config/icon="res://textures/icon2.png"
 
@@ -61,9 +79,20 @@ SceneManager="*res://managers/scene/scenemanager.gd"
 Game="*res://game/game.gd"
 Environement="res://WorldEnvironment.tscn"
 Audio="*res://audio/audio.tscn"
+Tools="*res://game/tools.gd"
 
 [debug]
 
+gdscript/warnings/unused_variable=false
+gdscript/warnings/shadowed_variable=false
+gdscript/warnings/unused_argument=false
+gdscript/warnings/unreachable_code=false
+gdscript/warnings/function_may_yield=false
+gdscript/warnings/variable_conflicts_function=false
+gdscript/warnings/function_conflicts_variable=false
+gdscript/warnings/function_conflicts_constant=false
+gdscript/warnings/unused_signal=false
+gdscript/warnings/return_value_discarded=false
 gdscript/warnings/integer_division=false
 
 [display]

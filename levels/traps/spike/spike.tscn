@@ -6,20 +6,12 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1.53469, 7.07453 )
 
-[node name="Spike" type="Node2D" groups=[
-"Death",
-]]
+[node name="Spike" type="Area2D" groups=["Death"]]
 script = ExtResource( 2 )
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0.5, 0 )
 texture = ExtResource( 1 )
-
-[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

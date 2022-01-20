@@ -43,6 +43,7 @@ rotation_speed = 50.0
 
 [node name="Deathball" parent="traps/Deathball/Deathball" instance=ExtResource( 3 )]
 position = Vector2( -68, -68 )
+difficulty = 2
 rotation_speed = 50.0
 
 [node name="AncientFire" parent="traps/Deathball" instance=ExtResource( 4 )]

@@ -1,4 +1,4 @@
-extends Node2D
+extends Trap
 
 export var shoot_rate : float = 1.0
 export var start_shot : float = 0.5

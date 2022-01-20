@@ -118,5 +118,6 @@ toggleable = true
 [node name="RocketLauncher" parent="traps" instance=ExtResource( 10 )]
 position = Vector2( 576, 52 )
 rotation = 1.5708
+difficulty = 2
 shoot_rate = 2.0
 rocket_speed = 250.0

@@ -18,6 +18,7 @@ func set_current_scene(scene):
 		scene = load(scene)
 	var new_scene = scene as Object
 	get_tree().call_deferred("change_scene_to",new_scene)
+	Game.emit_signal("scene_changed")
 	
 func transition_to(scene,time : float = transition_time):
 	var transition = preload("res://managers/transition/transition.tscn").instance()
@@ -26,10 +27,9 @@ func transition_to(scene,time : float = transition_time):
 	transitioning = true
 	get_tree().root.add_child(transition)
 	emit_signal("transition_started")
-	yield(transition,"transitioned")
-	set_current_scene(scene)
-	yield(transition,"transition_complete")
-	transition.queue_free()
+	transition.connect("transitioned",self,"set_current_scene",[scene])
+	transition.connect("transition_complete",transition,"queue_free")
+	return transition
 
 func _transition_complete():
 	emit_signal("transition_complete")

@@ -45,9 +45,9 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/CenterContainer"]
 margin_left = 487.0
-margin_top = 222.0
+margin_top = 185.0
 margin_right = 664.0
-margin_bottom = 426.0
+margin_bottom = 463.0
 custom_constants/separation = 74
 alignment = 1
 
@@ -94,6 +94,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="SkipLevel" type="VBoxContainer" parent="Control/CenterContainer/VBoxContainer"]
+margin_top = 278.0
+margin_right = 177.0
+margin_bottom = 278.0
+
+[node name="Button" type="Button" parent="Control/CenterContainer/VBoxContainer/SkipLevel"]
+visible = false
+margin_right = 221.0
+margin_bottom = 55.0
+text = "Skip Level"
+
 [node name="Button" type="Button" parent="Control"]
 margin_left = 20.0
 margin_top = 80.0
@@ -111,4 +122,5 @@ __meta__ = {
 }
 
 [connection signal="value_changed" from="Control/CenterContainer/VBoxContainer/Audio/HSlider" to="." method="_on_HSlider_value_changed"]
+[connection signal="pressed" from="Control/CenterContainer/VBoxContainer/SkipLevel/Button" to="." method="skip_level"]
 [connection signal="pressed" from="Control/Button" to="." method="_on_Button_pressed"]

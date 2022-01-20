@@ -1,4 +1,4 @@
-extends Node2D
+extends Trap
 
 export var mirror_x : bool = true
 export var mirror_y : bool = true
@@ -7,8 +7,6 @@ export var x_multiplier : float = 1.0
 export var y_multiplier : float = 1.0
 
 var player : KinematicBody2D = null
-
-var speed : float = 100.0
 
 onready var start_pos = global_position
 
@@ -29,7 +27,3 @@ func update_position(delta):
 		else: new_pos.y = player.global_position.y
 		
 		global_position = new_pos#global_position.linear_interpolate(new_pos,delta*speed)
-
-
-func _on_Area2D_body_entered(body):
-	body.death()

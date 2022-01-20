@@ -68,11 +68,12 @@ func create_constant_particles():
 	add_child(constant_particles)
 
 func remove_constant_particles():
-	remove_child(constant_particles)
-	Game.add_child(constant_particles)
-	constant_particles.global_position = global_position
-	constant_particles.emitting = false
-	constant_particles.queue_death()
+	if constant_particles.get_parent() != Game:
+		remove_child(constant_particles)
+		Game.add_child(constant_particles)
+		constant_particles.global_position = global_position
+		constant_particles.emitting = false
+		constant_particles.queue_death()
 
 
 func create_hit_particles():

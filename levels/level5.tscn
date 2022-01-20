@@ -45,5 +45,12 @@ y_multiplier = -0.3
 [node name="Deathball" parent="traps/Star2" instance=ExtResource( 4 )]
 rotation = 2.35619
 
+[node name="Star3" parent="traps" instance=ExtResource( 3 )]
+position = Vector2( 731, 278 )
+scale = Vector2( 3, 3 )
+difficulty = 2
+x_multiplier = 0.5
+y_multiplier = -0.4
+
 [node name="AncientFire" parent="." instance=ExtResource( 5 )]
 position = Vector2( 896, 320 )

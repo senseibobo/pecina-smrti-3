@@ -1,23 +1,44 @@
 extends Node
 
-signal scene_changed
+enum DIFFICULTY {
+	EASY,
+	HARD
+}
 
-var current_level : int = 1
+signal scene_changed
+signal player_death
+signal level_passed
+
+var current_level : int = 15
 var deaths : int = 0
 var fires_collected : int = 0
-var darko_phase = 1
+var difficulty : int = DIFFICULTY.HARD
+
+const LEVEL_COUNT : int = 15
 
 onready var hud = preload("res://menu/hud/hud.tscn").instance()
 onready var pause = preload("res://menu/pause/pause.tscn").instance()
 onready var camera = preload("res://game/camera.tscn").instance()
 onready var mobilecontrols = preload("res://other/mobilecontrols.tscn").instance()
 
+var boss_phase = {
+	"darko" : 1
+}
+
 func _ready():
 	randomize()
+
+
+
+func start_game():
+	current_level = 1
+	yield(SceneManager.transition_to(load("res://levels/level1.tscn")),"transitioned")
+	hud.add_child(mobilecontrols)
 	add_child(hud)
 	add_child(pause)
 	add_child(camera)
-	hud.add_child(mobilecontrols)
+	
+	Audio.play_music(Audio.get_level_music(1))
 
 func complete():
 	hud.stopped = true
@@ -34,18 +55,21 @@ func complete():
 func restart_level():
 	SceneManager.set_current_scene(load("res://levels/level%s.tscn"%str(current_level)))
 	create_death_particles()
-	emit_signal("scene_changed")
 	
 func pass_level():
 	current_level += 1
-	var _transition = SceneManager.transition_to(load("res://levels/level%s.tscn"%str(current_level)))
-	emit_signal("scene_changed")
-	
+	Audio.play_music(Audio.get_level_music(current_level))
+	SceneManager.transition_to(load("res://levels/level%s.tscn"%str(current_level)))
+	emit_signal("level_passed")
+
+
 func update_deaths():
-	get_node("HUD").update_deaths()
+	if hud != null:
+		hud.update_deaths()
 
 func update_level():
-	get_node("HUD").update_level()
+	if hud != null:
+		hud.update_level()
 
 func get_player() -> KinematicBody2D:
 	var player = get_node_or_null("/root/World/Player") as KinematicBody2D

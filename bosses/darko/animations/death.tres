@@ -1,0 +1,34 @@
+[gd_resource type="Animation" format=2]
+
+[resource]
+length = 5.0
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Darko/Sprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 5000, -0.36, -6814.17, 0.25, 0 ),
+"times": PoolRealArray( 0, 5 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Darko/Sprite:scale:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 5.86, -0.12995, 0, -1.13, 0.197185, 0.25, 0 ),
+"times": PoolRealArray( 0, 5 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("Darko/Sprite:scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 5.73, -0.159205, 0, -1.16, 0.308354, 0.25, 0 ),
+"times": PoolRealArray( 0, 5 )
+}

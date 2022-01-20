@@ -1,5 +1,6 @@
 extends ColorRect
 
+export(int,FLAGS,"Easy","Hard") var difficulty = 0b0000000000000011
 export var shoot_rate : float = 0.2
 export var start_shot : float = 0.1
 export var shuriken_direction_degrees : float = -90
@@ -11,12 +12,14 @@ export var disappearing : bool = true #OPREZNO
 export var random : bool = true
 
 func _ready():
+	if difficulty & (Game.difficulty+1) == 0:
+		queue_free()
+		return
 	color.a = 0
 	$Timer.start(start_shot); yield($Timer,"timeout")
 	_on_Timer_timeout()
 	$Timer.stop()
 	$Timer.start(shoot_rate)
-	
 
 
 
@@ -33,7 +36,7 @@ func _on_Timer_timeout():
 			shuriken.global_position.x = rect_global_position.x + int(int(rand_range(0,rect_size.x))/step)*step
 			shuriken.global_position.y = rect_global_position.y + int(int(rand_range(0,rect_size.y))/step)*step
 		else:
-			shuriken.global_position.x = rect_global_position.x + current_place % int(rect_size.x)
+			shuriken.global_position.x = rect_global_position.x + fmod(current_place-0.01,rect_size.x)
 			shuriken.global_position.y = rect_global_position.y
 			current_place += step
 		shuriken.disappearing = true
