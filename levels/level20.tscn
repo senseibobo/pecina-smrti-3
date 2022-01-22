@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://levels/tilesets/tileset.tres" type="TileSet" id=1]
-[ext_resource path="res://player/player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://bosses/pecinac/1/pecinac1.tscn" type="PackedScene" id=3]
+[ext_resource path="res://bosses/pecinac/1/pecinac1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://player/player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://textures/background.png" type="Texture" id=4]
 [ext_resource path="res://levels/tilesets/spikeset.tres" type="TileSet" id=5]
 
@@ -15,7 +15,7 @@ scale = Vector2( 2.295, 2.295 )
 z_index = -52
 texture = ExtResource( 4 )
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
+[node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 74, 439 )
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -34,5 +34,5 @@ tile_data = PoolIntArray( -65537, 0, 0, -131072, 0, 0, -131071, 0, 0, -131070, 0
 
 [node name="traps" type="Node2D" parent="."]
 
-[node name="Pecinac1" parent="." instance=ExtResource( 3 )]
+[node name="Pecinac1" parent="." instance=ExtResource( 2 )]
 max_health = 32.0

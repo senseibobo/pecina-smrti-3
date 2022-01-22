@@ -4,12 +4,14 @@ func _unhandled_input(event):
 	if event.is_action_pressed("fullscreen"):
 		OS.window_fullscreen = !OS.window_fullscreen
 
-func tween(object,property,from,to,duration,tw1 = Tween.TRANS_LINEAR,tw2 = Tween.EASE_IN_OUT) -> Tween:
+func tween(object,property,from,to,duration,tw1 = Tween.TRANS_LINEAR,tw2 = Tween.EASE_IN_OUT, physics = false) -> Tween:
 	var tween = Tween.new()
 	get_tree().current_scene.add_child(tween)
 	tween.connect("tween_all_completed",tween,"queue_free")
 	tween.interpolate_property(object,property,from,to,duration,tw1,tw2)
 	tween.start()
+	if physics:
+		tween.playback_process_mode = Tween.TWEEN_PROCESS_PHYSICS
 	return tween
 
 func timer(time,object = get_tree().current_scene) -> Timer:

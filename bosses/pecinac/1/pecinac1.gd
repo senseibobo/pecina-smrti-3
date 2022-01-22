@@ -7,6 +7,7 @@ onready var sprite = $Pecinac
 func _init():
 	boss_name = "Pećinac"
 	boss_id = "pecinac"
+	phase = 1
 
 
 func cast_spell(color : Color):

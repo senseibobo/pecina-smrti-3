@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://textures/background.png" type="Texture" id=1]
 [ext_resource path="res://menu/main/mainmenu.gd" type="Script" id=2]
 [ext_resource path="res://menu/main/ScrollingBackground.gd" type="Script" id=3]
 [ext_resource path="res://theme/maintheme.tres" type="Theme" id=4]
+[ext_resource path="res://menu/main/LevelGrid.gd" type="Script" id=5]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -37,30 +38,174 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="Main" type="CenterContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 515.0
-margin_top = 267.0
-margin_right = 636.0
-margin_bottom = 381.0
+[node name="VBoxContainer" type="VBoxContainer" parent="Main"]
+margin_left = 475.0
+margin_top = 209.0
+margin_right = 677.0
+margin_bottom = 439.0
+
+[node name="Play" type="Button" parent="Main/VBoxContainer"]
+margin_right = 202.0
+margin_bottom = 74.2476
+mouse_default_cursor_shape = 2
+text = "Play"
+
+[node name="Options" type="Button" parent="Main/VBoxContainer"]
+margin_top = 78.0
+margin_right = 202.868
+margin_bottom = 152.248
+text = "Options"
+
+[node name="Quit" type="Button" parent="Main/VBoxContainer"]
+margin_top = 156.0
+margin_right = 202.0
+margin_bottom = 230.248
+text = "Quit"
+
+[node name="Play" type="CenterContainer" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Play"]
+margin_left = 426.0
+margin_top = 209.0
+margin_right = 725.0
+margin_bottom = 439.0
+
+[node name="NewGame" type="Button" parent="Play/VBoxContainer"]
+margin_right = 299.0
+margin_bottom = 74.2476
+text = "New Game"
+
+[node name="SelectLevel" type="Button" parent="Play/VBoxContainer"]
+margin_top = 78.0
+margin_right = 299.868
+margin_bottom = 152.248
+text = "Select Level"
+
+[node name="Back" type="Button" parent="Play/VBoxContainer"]
+margin_top = 156.0
+margin_right = 299.0
+margin_bottom = 230.248
+text = "Back"
+
+[node name="NewGame" type="CenterContainer" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NewGame"]
+margin_left = 506.0
+margin_top = 209.0
+margin_right = 645.0
+margin_bottom = 439.0
 alignment = 1
 
-[node name="Easy" type="Button" parent="CenterContainer/VBoxContainer"]
-margin_right = 121.0
-margin_bottom = 55.0
+[node name="Easy" type="Button" parent="NewGame/VBoxContainer"]
+margin_right = 139.0
+margin_bottom = 74.2476
 text = "Easy"
 
-[node name="Hard" type="Button" parent="CenterContainer/VBoxContainer"]
-margin_top = 59.0
-margin_right = 121.0
-margin_bottom = 114.0
+[node name="Hard" type="Button" parent="NewGame/VBoxContainer"]
+margin_top = 78.0
+margin_right = 139.868
+margin_bottom = 152.248
 text = "Hard"
 
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Easy" to="." method="easy"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Hard" to="." method="hard"]
+[node name="Back" type="Button" parent="NewGame/VBoxContainer"]
+margin_top = 156.0
+margin_right = 139.0
+margin_bottom = 230.248
+text = "Back"
+
+[node name="Options" type="CenterContainer" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Options"]
+margin_left = 373.0
+margin_top = 191.0
+margin_right = 779.0
+margin_bottom = 457.0
+
+[node name="Volume" type="Label" parent="Options/VBoxContainer"]
+margin_right = 406.0
+margin_bottom = 55.0
+text = "Volume"
+align = 1
+
+[node name="HSlider" type="HSlider" parent="Options/VBoxContainer"]
+margin_top = 59.0
+margin_right = 406.0
+margin_bottom = 110.0
+rect_min_size = Vector2( 256, 0 )
+step = 5.0
+value = 20.0
+
+[node name="Fullscreen" type="Button" parent="Options/VBoxContainer"]
+margin_top = 114.0
+margin_right = 406.0
+margin_bottom = 188.248
+text = "Fullscreen"
+
+[node name="Back" type="Button" parent="Options/VBoxContainer"]
+margin_top = 192.0
+margin_right = 406.0
+margin_bottom = 266.248
+text = "Back"
+
+[node name="SelectLevel" type="CenterContainer" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SelectLevel"]
+margin_left = 512.0
+margin_top = 285.0
+margin_right = 639.0
+margin_bottom = 363.0
+
+[node name="LevelGrid" type="GridContainer" parent="SelectLevel/VBoxContainer"]
+margin_right = 127.0
+columns = 5
+script = ExtResource( 5 )
+
+[node name="Back" type="Button" parent="SelectLevel/VBoxContainer"]
+margin_top = 4.0
+margin_right = 127.868
+margin_bottom = 78.2476
+text = "Back"
+
+[connection signal="pressed" from="Main/VBoxContainer/Play" to="." method="change_menu" binds= [ "Play" ]]
+[connection signal="pressed" from="Main/VBoxContainer/Options" to="." method="change_menu" binds= [ "Options" ]]
+[connection signal="pressed" from="Main/VBoxContainer/Quit" to="." method="quit_game"]
+[connection signal="pressed" from="Play/VBoxContainer/NewGame" to="." method="change_menu" binds= [ "NewGame" ]]
+[connection signal="pressed" from="Play/VBoxContainer/SelectLevel" to="." method="change_menu" binds= [ "SelectLevel" ]]
+[connection signal="pressed" from="Play/VBoxContainer/Back" to="." method="change_menu" binds= [ "Main" ]]
+[connection signal="pressed" from="NewGame/VBoxContainer/Easy" to="." method="easy"]
+[connection signal="pressed" from="NewGame/VBoxContainer/Hard" to="." method="hard"]
+[connection signal="pressed" from="NewGame/VBoxContainer/Back" to="." method="change_menu" binds= [ "Play" ]]
+[connection signal="pressed" from="Options/VBoxContainer/Fullscreen" to="." method="fullscreen"]
+[connection signal="pressed" from="Options/VBoxContainer/Back" to="." method="change_menu" binds= [ "Main" ]]
+[connection signal="pressed" from="SelectLevel/VBoxContainer/Back" to="." method="change_menu" binds= [ "Play" ]]

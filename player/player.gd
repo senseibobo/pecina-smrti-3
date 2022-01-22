@@ -12,6 +12,7 @@ onready var sprite = $Sprite
 
 var frozen : bool = true
 var dying : bool = false
+var unkillable : bool = false
 
 var vec_up = Vector2.UP
 var velocity : Vector2
@@ -41,6 +42,7 @@ func _physics_process(delta):
 	global_position.y = wrapf(global_position.y,-100,820)
 	if global_position.x > 1200 and not SceneManager.transitioning:
 		Game.pass_level()
+		unkillable = true
 		Game.fires_collected += fires_collected
 
 func flip_gravity():
@@ -68,7 +70,7 @@ func _movement(delta):
 	old_wall = is_on_wall()
 	var _result_velocity = move_and_slide(velocity,vec_up)
 	if old_wall and !is_on_wall() and move != 0 and old_move == move and -vec_up.y * velocity.y > 0 and test_move(transform,Vector2(0,-velocity.y-1)):
-		move_and_collide(vec_up*abs(velocity.y))
+		move_and_collide(vec_up*abs(velocity.y)*delta)
 		velocity.y = -velocity.y
 	old_move = move
 	
@@ -88,7 +90,7 @@ func _movement(delta):
 	
 			
 func death():
-	if dying: return
+	if dying or unkillable: return
 	dying = true
 	frozen = true
 	Game.deaths += 1

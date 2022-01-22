@@ -9,17 +9,22 @@ signal scene_changed
 signal player_death
 signal level_passed
 
-var current_level : int = 15
+var current_level : int = 1
 var deaths : int = 0
 var fires_collected : int = 0
 var difficulty : int = DIFFICULTY.HARD
 
-const LEVEL_COUNT : int = 16
+const LEVEL_COUNT : int = 20
 
-onready var hud = preload("res://menu/hud/hud.tscn").instance()
-onready var pause = preload("res://menu/pause/pause.tscn").instance()
-onready var camera = preload("res://game/camera.tscn").instance()
-onready var mobilecontrols = preload("res://other/mobilecontrols.tscn").instance()
+onready var hud_scene = preload("res://menu/hud/hud.tscn")
+onready var pause_scene = preload("res://menu/pause/pause.tscn")
+onready var camera_scene = preload("res://game/camera.tscn")
+onready var mobilecontrols_scene = preload("res://other/mobilecontrols.tscn")
+
+var hud
+var pause
+var camera
+var mobilecontrols
 
 var boss_phase = {
 	"darko" : 2,
@@ -28,17 +33,26 @@ var boss_phase = {
 
 func _ready():
 	randomize()
-	add_child(camera)#REMOVE AFTER
 
+func return_to_main_menu():
+	yield(SceneManager.transition_to(load("res://menu/main/mainmenu.tscn")),"transitioned")
+	get_tree().paused = false
+	hud.queue_free()
+	camera.queue_free()
+	pause.queue_free()
 
-
-func start_game():
-	current_level = 1
-	yield(SceneManager.transition_to(load("res://levels/level1.tscn")),"transitioned")
-	hud.add_child(mobilecontrols)
+func start_game(level : int = 1):
+	current_level = level
+	yield(SceneManager.transition_to(load("res://levels/level%d.tscn" % level)),"transitioned")
+	hud = hud_scene.instance()
+	pause = pause_scene.instance()
+	camera = camera_scene.instance()
+	if OS.get_name() in ["Android","iOS","HTML5"]:
+		mobilecontrols = mobilecontrols_scene.instance()
+		hud.add_child(mobilecontrols)
 	add_child(hud)
 	add_child(pause)
-	#add_child(camera)
+	add_child(camera)
 	
 	Audio.play_music(Audio.get_level_music(1))
 
@@ -68,11 +82,11 @@ func pass_level():
 
 
 func update_deaths():
-	if hud != null:
+	if is_instance_valid(hud):
 		hud.update_deaths()
 
 func update_level():
-	if hud != null:
+	if is_instance_valid(hud):
 		hud.update_level()
 
 func get_player() -> KinematicBody2D:

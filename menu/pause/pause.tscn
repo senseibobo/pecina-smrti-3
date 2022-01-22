@@ -16,7 +16,7 @@
 
 [node name="Pause" type="CanvasLayer"]
 pause_mode = 2
-layer = 30
+layer = 20
 script = ExtResource( 2 )
 
 [node name="Control" type="Control" parent="."]
@@ -44,19 +44,19 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/CenterContainer"]
-margin_left = 487.0
-margin_top = 185.0
-margin_right = 664.0
-margin_bottom = 463.0
+margin_left = 346.0
+margin_top = 93.0
+margin_right = 805.0
+margin_bottom = 554.0
 custom_constants/separation = 74
 alignment = 1
 
 [node name="Paused" type="VBoxContainer" parent="Control/CenterContainer/VBoxContainer"]
-margin_right = 177.0
+margin_right = 459.0
 margin_bottom = 55.0
 
 [node name="Paused" type="Label" parent="Control/CenterContainer/VBoxContainer/Paused"]
-margin_right = 177.0
+margin_right = 459.0
 margin_bottom = 55.0
 text = "Paused"
 align = 1
@@ -72,11 +72,11 @@ align = 1
 
 [node name="Audio" type="VBoxContainer" parent="Control/CenterContainer/VBoxContainer"]
 margin_top = 129.0
-margin_right = 177.0
-margin_bottom = 204.0
+margin_right = 459.0
+margin_bottom = 239.0
 
 [node name="Label" type="Label" parent="Control/CenterContainer/VBoxContainer/Audio"]
-margin_right = 177.0
+margin_right = 459.0
 margin_bottom = 55.0
 text = "Volume"
 align = 1
@@ -86,8 +86,8 @@ __meta__ = {
 
 [node name="HSlider" type="HSlider" parent="Control/CenterContainer/VBoxContainer/Audio"]
 margin_top = 59.0
-margin_right = 177.0
-margin_bottom = 75.0
+margin_right = 459.0
+margin_bottom = 110.0
 step = 0.0
 value = 50.0
 __meta__ = {
@@ -95,15 +95,25 @@ __meta__ = {
 }
 
 [node name="SkipLevel" type="VBoxContainer" parent="Control/CenterContainer/VBoxContainer"]
-margin_top = 278.0
-margin_right = 177.0
-margin_bottom = 278.0
+margin_top = 313.0
+margin_right = 459.0
+margin_bottom = 313.0
 
 [node name="Button" type="Button" parent="Control/CenterContainer/VBoxContainer/SkipLevel"]
 visible = false
 margin_right = 221.0
 margin_bottom = 55.0
 text = "Skip Level"
+
+[node name="Back" type="VBoxContainer" parent="Control/CenterContainer/VBoxContainer"]
+margin_top = 387.0
+margin_right = 459.0
+margin_bottom = 461.0
+
+[node name="Back" type="Button" parent="Control/CenterContainer/VBoxContainer/Back"]
+margin_right = 459.868
+margin_bottom = 74.2476
+text = "Back to main menu"
 
 [node name="Button" type="Button" parent="Control"]
 margin_left = 20.0
@@ -123,4 +133,5 @@ __meta__ = {
 
 [connection signal="value_changed" from="Control/CenterContainer/VBoxContainer/Audio/HSlider" to="." method="_on_HSlider_value_changed"]
 [connection signal="pressed" from="Control/CenterContainer/VBoxContainer/SkipLevel/Button" to="." method="skip_level"]
+[connection signal="pressed" from="Control/CenterContainer/VBoxContainer/Back/Back" to="." method="back"]
 [connection signal="pressed" from="Control/Button" to="." method="_on_Button_pressed"]

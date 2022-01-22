@@ -1,14 +1,16 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://bosses/pecinac/1/pecinac1.gd" type="Script" id=1]
 [ext_resource path="res://levels/tilesets/tileset.tres" type="TileSet" id=2]
 [ext_resource path="res://bosses/pecinac/1/pecinac.png" type="Texture" id=3]
+[ext_resource path="res://bosses/pecinac/2/pecinac2.tscn" type="PackedScene" id=4]
 
 [node name="Pecinac1" type="Node2D"]
 script = ExtResource( 1 )
 max_health = 40.0
 attack_paths = [ "res://bosses/pecinac/1/attacks/scripts/pecinacattack1.gd", "res://bosses/pecinac/1/attacks/scripts/pecinacattack2.gd", "res://bosses/pecinac/1/attacks/scripts/pecinacattack3.gd", "res://bosses/pecinac/1/attacks/scripts/pecinacattack4.gd" ]
 path_to_boss_node = NodePath("Pecinac")
+next_phase = ExtResource( 4 )
 music = "the_fear"
 music_loop_start = 28.7
 music_loop_end = 135.4

@@ -1,16 +1,59 @@
-[gd_resource type="Theme" load_steps=8 format=2]
+[gd_resource type="Theme" load_steps=15 format=2]
 
 [ext_resource path="res://font/cinzel.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://menu/slidergrabber.png" type="Texture" id=2]
+[ext_resource path="res://menu/dugmenepritisnuto.png" type="Texture" id=3]
+[ext_resource path="res://menu/dugmepritisnuto.png" type="Texture" id=4]
+[ext_resource path="res://menu/slidernesto.png" type="Texture" id=5]
+[ext_resource path="res://menu/slidernestoprazno.png" type="Texture" id=6]
 
-[sub_resource type="StyleBoxEmpty" id=2]
+[sub_resource type="StyleBoxTexture" id=12]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 84, 84 )
+margin_left = 7.11375
+margin_right = 7.46127
+margin_top = 7.44492
+margin_bottom = 7.50995
 
-[sub_resource type="StyleBoxEmpty" id=3]
+[sub_resource type="StyleBoxEmpty" id=17]
 
-[sub_resource type="StyleBoxEmpty" id=4]
+[sub_resource type="StyleBoxTexture" id=15]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 84, 84 )
+margin_left = 11.4065
+margin_right = 7.46127
+margin_top = 4.65461
+margin_bottom = 14.593
 
-[sub_resource type="StyleBoxEmpty" id=5]
+[sub_resource type="StyleBoxTexture" id=16]
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 73, 73 )
+margin_left = 5.73996
+margin_right = 8.21397
+margin_top = 7.92756
+margin_bottom = 7.82861
 
-[sub_resource type="StyleBoxEmpty" id=6]
+[sub_resource type="StyleBoxTexture" id=19]
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, -3.58306, 15.3279, 35.5831 )
+margin_left = 14.8995
+margin_top = 3.94424
+margin_bottom = 9.97287
+
+[sub_resource type="StyleBoxTexture" id=20]
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 8.71215, 32 )
+margin_left = 8.53893
+margin_top = 4.303
+margin_bottom = 10.3392
+
+[sub_resource type="StyleBoxTexture" id=18]
+texture = ExtResource( 6 )
+region_rect = Rect2( 0, 0, 406, 32 )
+margin_left = 7.95906
+margin_right = 6.61211
+margin_top = 3.71096
+margin_bottom = 9.19027
 
 [sub_resource type="DynamicFont" id=1]
 size = 40
@@ -23,8 +66,15 @@ font_data = ExtResource( 1 )
 
 [resource]
 default_font = SubResource( 1 )
-Button/styles/disabled = SubResource( 2 )
-Button/styles/focus = SubResource( 3 )
-Button/styles/hover = SubResource( 4 )
-Button/styles/normal = SubResource( 5 )
-Button/styles/pressed = SubResource( 6 )
+Button/styles/disabled = SubResource( 12 )
+Button/styles/focus = SubResource( 17 )
+Button/styles/hover = SubResource( 15 )
+Button/styles/normal = SubResource( 15 )
+Button/styles/pressed = SubResource( 16 )
+HSlider/icons/grabber = ExtResource( 2 )
+HSlider/icons/grabber_disabled = ExtResource( 2 )
+HSlider/icons/grabber_highlight = ExtResource( 2 )
+HSlider/icons/tick = ExtResource( 2 )
+HSlider/styles/grabber_area = SubResource( 19 )
+HSlider/styles/grabber_area_highlight = SubResource( 20 )
+HSlider/styles/slider = SubResource( 18 )

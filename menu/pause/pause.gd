@@ -44,3 +44,7 @@ func _on_Button_pressed():
 	get_tree().paused = false
 
 
+
+
+func back():
+	Game.return_to_main_menu()
