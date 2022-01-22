@@ -33,4 +33,4 @@ func attack(boss): # bullet hell 1
 			var angle = (increment+1)/2*PI+TAU*j/vars["bullets_per_attack"] + current_angle
 			boss.bhm.spawn_bullet(NormalBullet.new(),vars["bullet_speed"],Vector2(1,0).rotated(angle),0)
 		yield(Tools.timer(vars["attack_duration"]/vars["count"],boss),"timeout")
-	emit_signal("attack_finished")
+	boss.emit_signal("attack_finished")

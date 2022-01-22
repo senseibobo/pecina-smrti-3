@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://bosses/pecinac/1/attacks/3/uzvicnik.gd" type="Script" id=1]
+[ext_resource path="res://bosses/pecinac/1/attacks/3/uzvicnik.png" type="Texture" id=2]
+
+[node name="Uzvicnik" type="Sprite"]
+scale = Vector2( 0.4375, 0.4375 )
+texture = ExtResource( 2 )
+script = ExtResource( 1 )

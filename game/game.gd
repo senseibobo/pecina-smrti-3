@@ -14,7 +14,7 @@ var deaths : int = 0
 var fires_collected : int = 0
 var difficulty : int = DIFFICULTY.HARD
 
-const LEVEL_COUNT : int = 15
+const LEVEL_COUNT : int = 16
 
 onready var hud = preload("res://menu/hud/hud.tscn").instance()
 onready var pause = preload("res://menu/pause/pause.tscn").instance()
@@ -22,11 +22,13 @@ onready var camera = preload("res://game/camera.tscn").instance()
 onready var mobilecontrols = preload("res://other/mobilecontrols.tscn").instance()
 
 var boss_phase = {
-	"darko" : 1
+	"darko" : 2,
+	"pecinac" : 1
 }
 
 func _ready():
 	randomize()
+	add_child(camera)#REMOVE AFTER
 
 
 
@@ -36,7 +38,7 @@ func start_game():
 	hud.add_child(mobilecontrols)
 	add_child(hud)
 	add_child(pause)
-	add_child(camera)
+	#add_child(camera)
 	
 	Audio.play_music(Audio.get_level_music(1))
 
@@ -58,7 +60,9 @@ func restart_level():
 	
 func pass_level():
 	current_level += 1
-	Audio.play_music(Audio.get_level_music(current_level))
+	var music = Audio.get_level_music(current_level)
+	if music != "":
+		Audio.play_music(music)
 	SceneManager.transition_to(load("res://levels/level%s.tscn"%str(current_level)))
 	emit_signal("level_passed")
 

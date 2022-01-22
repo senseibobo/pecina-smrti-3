@@ -11,9 +11,8 @@ func _init():
 	boss_name = "Darko"
 	boss_id = "darko"
 	phase = 1
-
-		
-		
+	
+	
 func launch_bloodball(pos : Vector2, rot = null,target = Game.get_player()):
 	var bloodball = preload("res://bosses/darko/attacks/first/bloodball.tscn").instance()
 	bloodball.global_position = pos
@@ -29,9 +28,6 @@ func launch_bloodball(pos : Vector2, rot = null,target = Game.get_player()):
 	return bloodball
 	
 	
-
-		
-		
 func create_lasergun(pos,rot,prep,time,scale = Vector2(1,1)):
 	var lasergun = preload("res://bosses/darko/attacks/second/lasergun.tscn").instance()
 	lasergun.global_position = pos
@@ -41,17 +37,11 @@ func create_lasergun(pos,rot,prep,time,scale = Vector2(1,1)):
 	lasergun.scale = scale
 	Game.get_world().add_child(lasergun)
 	
-
+	
 func next_phase_condition():
 	return Game.fires_collected >= 14
 	
 	
-
-	
-	
-
-	
-				
 func steal_fire():
 	var fire = preload("res://other/ancientfire.tscn").instance()
 	fire.get_node("Area2D").monitoring = false

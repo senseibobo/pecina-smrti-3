@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://test.gd" type="Script" id=1]
+[ext_resource path="res://textures/brada.png" type="Texture" id=2]
+[ext_resource path="res://textures/glava.png" type="Texture" id=3]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Head" type="Sprite" parent="."]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2( 24, -72 )
+points = PoolVector2Array( -20, 95, -22, 182, -23, 219, -24, 259, -36, 351 )
+width = 140.0
+default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 2 )
+texture_mode = 2
+joint_mode = 1

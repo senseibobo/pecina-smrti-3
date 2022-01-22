@@ -1,5 +1,9 @@
 extends Node
 
+func _unhandled_input(event):
+	if event.is_action_pressed("fullscreen"):
+		OS.window_fullscreen = !OS.window_fullscreen
+
 func tween(object,property,from,to,duration,tw1 = Tween.TRANS_LINEAR,tw2 = Tween.EASE_IN_OUT) -> Tween:
 	var tween = Tween.new()
 	get_tree().current_scene.add_child(tween)

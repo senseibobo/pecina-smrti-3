@@ -1,8 +1,6 @@
 extends Attack
 
 func _init():
-	pre_delay = 0.0
-	post_delay = 0.0
 	easy = {
 		"pre_delay" : 0.0,
 		"post_delay" : 0.0,

@@ -42,8 +42,9 @@ func _ready():
 	add_hud()
 	add_animations()
 	Audio.play_music(music,music_start_time,true,music_loop_start,music_loop_end)
-	animplayer.play("entrance")
-	yield(animplayer,"animation_finished")
+	if entrance_animation != "": 
+		animplayer.play("entrance")
+		yield(animplayer,"animation_finished")
 	call_deferred("main_loop")
 
 func _process(delta):
@@ -52,8 +53,8 @@ func _process(delta):
 
 func add_animations():
 	add_child(animplayer)
-	animplayer.add_animation("entrance",load(entrance_animation))
-	animplayer.add_animation("death",load(death_animation))
+	if entrance_animation != "": animplayer.add_animation("entrance",load(entrance_animation))
+	if death_animation != "": animplayer.add_animation("death",load(death_animation))
 	if next_phase != null: animplayer.add_animation("next_phase",load(next_phase_animation))
 	
 
@@ -71,6 +72,7 @@ func main_loop():
 		if attack.vars["pre_delay"] > 0: yield(Tools.timer(attack.vars["pre_delay"],self),"timeout")
 		attack.attack(self)
 		yield(self,"attack_finished")
+		print("finished")
 		if attack.vars["post_delay"] > 0: yield(Tools.timer(attack.vars["post_delay"],self),"timeout")
 
 func load_attacks():
@@ -79,7 +81,7 @@ func load_attacks():
 		attacks.append(attack)
 
 func choose_attack():
-	return attacks[1]
+	#return attacks[3]
 	if attacks.size() == 1:
 		return attacks[0]
 	var a = range(attacks.size())

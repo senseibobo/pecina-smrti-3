@@ -1,7 +1,5 @@
 extends AudioStreamPlayer
 
-var current_song = ""
-
 onready var sfx = $SoundEffects as AudioStreamPlayer
 
 var death_sfx = []
@@ -45,10 +43,10 @@ func play_music(music : String, start_position : float = 0.0, loop = false, star
 	
 func _ready():
 	Audio.set_volume_db(-28.75)
-	play_music("paradox",0,true,88.12,197.2)
+	if not Game.current_level in [15,25]:
+		call_deferred("play_music","paradox",0,true,88.12,197.2)
 	for i in range(1,11):
 		death_sfx.append(load("res://audio/sfx/death/death%s.wav"%str(i)))
-	laser_sound.loop = true
 
 func death_sound():
 	sfx.stop()
@@ -79,7 +77,9 @@ var song_loop_positions = {
 }
 
 func get_level_music(level):
-	return "paradox"
+	if not level in [15,25]:
+		return "paradox"
+	return ""
 
 func _process(_delta):
 	sfx.volume_db = volume_db
