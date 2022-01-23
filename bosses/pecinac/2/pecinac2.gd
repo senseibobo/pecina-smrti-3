@@ -3,11 +3,12 @@ extends Boss
 onready var spell_hand = $Pecinac/SpellHand
 onready var sprite = $Pecinac
 
+var t : float = 0.0
 
 func _init():
-	boss_name = "Pećinac"
+	boss_name = "Pećinac 2"
 	boss_id = "pecinac"
-	phase = 1
+	phase = 2
 
 func cast_spell(color : Color):
 	spell_hand.visible = true

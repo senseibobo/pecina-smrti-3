@@ -7,7 +7,11 @@
 [node name="Pecinac2" type="Node2D"]
 script = ExtResource( 1 )
 max_health = 40.0
+attack_paths = [ "res://bosses/pecinac/2/attacks/scripts/pecinac2attack1.gd" ]
 path_to_boss_node = NodePath("Pecinac")
+next_phase_sound = "murder_machine"
+next_phase_sound_start = 39.35
+next_phase_sound_skip_at_end = 53.35
 music = "the_fear"
 music_loop_start = 28.7
 music_loop_end = 135.4

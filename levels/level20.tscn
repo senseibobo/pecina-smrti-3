@@ -35,4 +35,3 @@ tile_data = PoolIntArray( -65537, 0, 0, -131072, 0, 0, -131071, 0, 0, -131070, 0
 [node name="traps" type="Node2D" parent="."]
 
 [node name="Pecinac1" parent="." instance=ExtResource( 2 )]
-max_health = 32.0

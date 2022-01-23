@@ -11,7 +11,7 @@ func tween(object,property,from,to,duration,tw1 = Tween.TRANS_LINEAR,tw2 = Tween
 	tween.interpolate_property(object,property,from,to,duration,tw1,tw2)
 	tween.start()
 	if physics:
-		tween.playback_process_mode = Tween.TWEEN_PROCESS_PHYSICS
+		tween.playback_process_mode = 2
 	return tween
 
 func timer(time,object = get_tree().current_scene) -> Timer:

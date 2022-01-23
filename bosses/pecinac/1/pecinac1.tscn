@@ -7,10 +7,14 @@
 
 [node name="Pecinac1" type="Node2D"]
 script = ExtResource( 1 )
-max_health = 40.0
+max_health = 10.0
 attack_paths = [ "res://bosses/pecinac/1/attacks/scripts/pecinacattack1.gd", "res://bosses/pecinac/1/attacks/scripts/pecinacattack2.gd", "res://bosses/pecinac/1/attacks/scripts/pecinacattack3.gd", "res://bosses/pecinac/1/attacks/scripts/pecinacattack4.gd" ]
 path_to_boss_node = NodePath("Pecinac")
 next_phase = ExtResource( 4 )
+next_phase_animation = "res://bosses/pecinac/1/animations/death.tres"
+next_phase_sound = "murder_machine"
+next_phase_sound_start = 39.35
+next_phase_sound_skip_at_end = 53.35
 music = "the_fear"
 music_loop_start = 28.7
 music_loop_end = 135.4
@@ -37,6 +41,16 @@ margin_left = 20.7143
 margin_top = -35.7143
 margin_right = 21.7143
 margin_bottom = -34.7143
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DeathRect" type="ColorRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 1, 1, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

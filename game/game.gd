@@ -28,7 +28,7 @@ var mobilecontrols
 
 var boss_phase = {
 	"darko" : 2,
-	"pecinac" : 1
+	"pecinac" : 2
 }
 
 func _ready():

@@ -25,7 +25,7 @@ onready var health : float = max_health
 onready var boss_node : Node2D = get_node(path_to_boss_node)
 
 var attacks: Array
-var attack_index: int
+var attack_index: int = -1
 
 var dying : bool = false
 var phase : int = 1
