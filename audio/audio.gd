@@ -42,7 +42,7 @@ func play_music(music : String, start_position : float = 0.0, loop = false, star
 	
 	
 func _ready():
-	Audio.set_volume_db(-28.75)
+	set_volume_db(-28.75)
 	if not Game.current_level in [15,25]:
 		call_deferred("play_music","paradox",0,true,88.12,197.2)
 	for i in range(1,11):
@@ -75,6 +75,10 @@ var song_loop_positions = {
 	"darko" : {"start" : 28.7, "end" : 135.4},
 	"darko2" : {"start" : 53.35, "end" : 181.3}
 }
+
+func set_volume_db(volume):
+	.set_volume_db(volume)
+	print("A")
 
 func get_level_music(level):
 	if not level in [15,25]:

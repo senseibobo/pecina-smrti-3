@@ -48,6 +48,9 @@ func _ready():
 	call_deferred("main_loop")
 
 func _process(delta):
+	remove_health(delta)
+
+func remove_health(delta):
 	if not dying:
 		health -= delta
 
@@ -81,7 +84,7 @@ func load_attacks():
 		attacks.append(attack)
 
 func choose_attack():
-	#return attacks[3]
+	#return attacks[2]
 	if attacks.size() == 1:
 		return attacks[0]
 	var a = range(attacks.size())

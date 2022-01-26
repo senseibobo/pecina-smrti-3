@@ -33,10 +33,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("pause"):
 		toggle_pause()
 		
-		
-func _on_HSlider_value_changed(value):
-	var volume = value/1.6-60 if value > 0 else -200
-	Audio.set_volume_db(volume)
+	
 
 
 func _on_Button_pressed():

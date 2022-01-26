@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://theme/maintheme.tres" type="Theme" id=1]
 [ext_resource path="res://menu/pause/pause.gd" type="Script" id=2]
 [ext_resource path="res://textures/pause.png" type="Texture" id=3]
+[ext_resource path="res://menu/main/VolumeSlider.gd" type="Script" id=4]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -84,15 +85,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HSlider" type="HSlider" parent="Control/CenterContainer/VBoxContainer/Audio"]
+[node name="VolumeSlider" type="HSlider" parent="Control/CenterContainer/VBoxContainer/Audio"]
 margin_top = 59.0
 margin_right = 459.0
 margin_bottom = 110.0
 step = 0.0
-value = 50.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource( 4 )
 
 [node name="SkipLevel" type="VBoxContainer" parent="Control/CenterContainer/VBoxContainer"]
 margin_top = 313.0
@@ -131,7 +129,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="value_changed" from="Control/CenterContainer/VBoxContainer/Audio/HSlider" to="." method="_on_HSlider_value_changed"]
 [connection signal="pressed" from="Control/CenterContainer/VBoxContainer/SkipLevel/Button" to="." method="skip_level"]
 [connection signal="pressed" from="Control/CenterContainer/VBoxContainer/Back/Back" to="." method="back"]
 [connection signal="pressed" from="Control/Button" to="." method="_on_Button_pressed"]

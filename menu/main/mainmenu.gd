@@ -2,11 +2,7 @@ extends Control
 
 
 onready var current_menu = $Main
-
-func _ready():
-	pass
-
-
+	
 func easy():
 	Game.difficulty = Game.DIFFICULTY.EASY
 	Game.start_game()
@@ -33,7 +29,6 @@ func change_menu(new_menu : String) -> void:
 	
 	current_menu.visible = false
 	current_menu = get_node(new_menu)
-	current_menu.set_deferred("visible",true)
 	
 	Tools.tween(
 		current_menu,
@@ -44,6 +39,8 @@ func change_menu(new_menu : String) -> void:
 		Tween.TRANS_CUBIC,
 		Tween.EASE_OUT
 	)
+	current_menu.visible = true
+	update()
 
 
 func quit_game():
@@ -52,3 +49,6 @@ func quit_game():
 
 func fullscreen():
 	OS.window_fullscreen = !OS.window_fullscreen
+
+
+

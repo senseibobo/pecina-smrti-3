@@ -7,7 +7,7 @@
 
 [node name="Pecinac1" type="Node2D"]
 script = ExtResource( 1 )
-max_health = 10.0
+max_health = 33.0
 attack_paths = [ "res://bosses/pecinac/1/attacks/scripts/pecinacattack1.gd", "res://bosses/pecinac/1/attacks/scripts/pecinacattack2.gd", "res://bosses/pecinac/1/attacks/scripts/pecinacattack3.gd", "res://bosses/pecinac/1/attacks/scripts/pecinacattack4.gd" ]
 path_to_boss_node = NodePath("Pecinac")
 next_phase = ExtResource( 4 )

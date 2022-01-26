@@ -53,6 +53,11 @@ _global_script_classes=[ {
 "class": "Trap",
 "language": "GDScript",
 "path": "res://levels/traps/trap.gd"
+}, {
+"base": "HSlider",
+"class": "VolumeSlider",
+"language": "GDScript",
+"path": "res://menu/main/VolumeSlider.gd"
 } ]
 _global_script_class_icons={
 "Attack": "",
@@ -63,7 +68,8 @@ _global_script_class_icons={
 "NormalBullet": "",
 "Player": "",
 "Projectile": "",
-"Trap": ""
+"Trap": "",
+"VolumeSlider": ""
 }
 
 [application]
