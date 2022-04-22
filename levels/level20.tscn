@@ -16,7 +16,7 @@ z_index = -52
 texture = ExtResource( 4 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 74, 439 )
+position = Vector2( 570, 503 )
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2( -2.25, -2.25 )

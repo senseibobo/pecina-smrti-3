@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pecinac2.png-adbfccd18ddc8c5b5a4c63019e6e95e6.stex"
+path="res://.import/glavaotvorenausta.png-65a274ed101949da071cf4a18bf12dd4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://bosses/pecinac/2/pecinac2.png"
-dest_files=[ "res://.import/pecinac2.png-adbfccd18ddc8c5b5a4c63019e6e95e6.stex" ]
+source_file="res://textures/glavaotvorenausta.png"
+dest_files=[ "res://.import/glavaotvorenausta.png-65a274ed101949da071cf4a18bf12dd4.stex" ]
 
 [params]
 

@@ -1,17 +1,72 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://bosses/pecinac/1/pecinac1.gd" type="Script" id=1]
+[ext_resource path="res://bosses/pecinac/old2/pecinac2.gd" type="Script" id=1]
 [ext_resource path="res://levels/tilesets/tileset.tres" type="TileSet" id=2]
-[ext_resource path="res://bosses/pecinac/1/pecinac.png" type="Texture" id=3]
-[ext_resource path="res://bosses/pecinac/2/pecinac2.tscn" type="PackedScene" id=4]
+[ext_resource path="res://textures/staklo2.png" type="Texture" id=3]
+[ext_resource path="res://bosses/pecinac/old2/pecinac2.png" type="Texture" id=4]
 
-[node name="Pecinac1" type="Node2D"]
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform bool flip;
+uniform bool blur;
+uniform bool drunk;
+uniform bool glass;
+uniform bool warp;
+uniform sampler2D glass_texture;
+uniform sampler2D warp_texture;
+uniform float offset = 1.0;
+
+float f(float x) {
+    return 1.0-abs(mod(x,2.0)-1.0);
+}
+
+void fragment() {
+	vec4 m = vec4(1.0);
+	vec2 uv = SCREEN_UV;
+	if(flip) uv = vec2(uv.x,1.0-uv.y);
+	if(drunk) {
+		float x = f(uv.x + sin(uv.y*10.0+TIME)/20.0);
+		uv = vec2(x,uv.y);
+	}
+	if(glass) {
+	    vec4 c = texture(glass_texture,UV);
+	    float a = (c.r + c.g + c.b)/3.0;
+		uv = vec2(f(uv.x + a/20.0*offset),f(uv.y + a/20.0*offset));
+	}
+	if(warp) {
+	    vec4 c = texture(warp_texture,UV/2.0);
+	    float a = (c.r + c.g + c.b)/3.0;
+	    float x = f(uv.x + a/20.0+sin(TIME)/10.0);
+	    float y = f(uv.y + a/20.0+cos(TIME)/10.0);
+		uv = vec2(x,y);
+		m = vec4(sin(TIME),cos(TIME),mod(tan(TIME),1.0),1.0);
+	}
+	if(blur) COLOR = textureLod(SCREEN_TEXTURE,uv,2.5)*m;
+	else COLOR = texture(SCREEN_TEXTURE,uv)*m;
+}"
+
+[sub_resource type="OpenSimplexNoise" id=3]
+
+[sub_resource type="NoiseTexture" id=4]
+noise = SubResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/flip = false
+shader_param/blur = false
+shader_param/drunk = false
+shader_param/glass = false
+shader_param/warp = false
+shader_param/offset = 1.018
+shader_param/glass_texture = ExtResource( 3 )
+shader_param/warp_texture = SubResource( 4 )
+
+[node name="Pecinac2" type="Node2D"]
 script = ExtResource( 1 )
-max_health = 33.0
-attack_paths = [ "res://bosses/pecinac/1/attacks/scripts/pecinacattack1.gd", "res://bosses/pecinac/1/attacks/scripts/pecinacattack2.gd", "res://bosses/pecinac/1/attacks/scripts/pecinacattack3.gd", "res://bosses/pecinac/1/attacks/scripts/pecinacattack4.gd" ]
+max_health = 40.0
+attack_paths = [ "res://bosses/pecinac/2/attacks/scripts/pecinac2attack1.gd", "res://bosses/pecinac/2/attacks/scripts/pecinac2attack2.gd", "res://bosses/pecinac/2/attacks/scripts/pecinac2attack3.gd" ]
 path_to_boss_node = NodePath("Pecinac")
-next_phase = ExtResource( 4 )
-next_phase_animation = "res://bosses/pecinac/1/animations/death.tres"
 next_phase_sound = "murder_machine"
 next_phase_sound_start = 39.35
 next_phase_sound_skip_at_end = 53.35
@@ -31,7 +86,7 @@ tile_data = PoolIntArray( -1, 0, 0, -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -6
 position = Vector2( 557, 159 )
 scale = Vector2( 2, 2 )
 z_index = 1
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 hframes = 2
 
 [node name="SpellHand" type="ColorRect" parent="Pecinac"]
@@ -45,9 +100,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Eye" type="ColorRect" parent="Pecinac"]
+modulate = Color( 25, 0, 0, 1 )
+margin_left = 1.2143
+margin_top = -32.2143
+margin_right = 2.2143
+margin_bottom = -31.2143
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="DeathRect" type="ColorRect" parent="CanvasLayer"]
+[node name="Shaders" type="CanvasLayer" parent="."]
+
+[node name="Shaders" type="ColorRect" parent="Shaders"]
+material = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 1, 1, 1, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -5,3 +5,6 @@ var post_delay : float
 var vars : Dictionary
 var easy : Dictionary
 var hard : Dictionary
+
+func process(delta,boss):
+	pass

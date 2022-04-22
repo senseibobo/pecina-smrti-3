@@ -34,6 +34,8 @@ var boss_name: String
 var boss_id: String
 var animplayer := AnimationPlayer.new()
 
+var attack
+
 func _ready():
 	if Game.boss_phase[boss_id] > phase:
 		spawn_next_phase()
@@ -48,6 +50,8 @@ func _ready():
 	call_deferred("main_loop")
 
 func _process(delta):
+	if attack is Attack:
+		attack.process(delta,self)
 	remove_health(delta)
 
 func remove_health(delta):
@@ -71,7 +75,7 @@ func main_loop():
 		if health <= 0.0:
 			death()
 			return
-		var attack = choose_attack()
+		attack = choose_attack()
 		if attack.vars["pre_delay"] > 0: yield(Tools.timer(attack.vars["pre_delay"],self),"timeout")
 		attack.attack(self)
 		yield(self,"attack_finished")

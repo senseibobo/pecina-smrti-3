@@ -1,18 +1,26 @@
-extends Node2D
+extends Boss
 
 
 var points : Array
 
-var gravity : float = 1600
+var gravity : float = 1000
 var p_length : float = 64.4
+onready var beard = $Pecinac/Beard
+onready var head = $Pecinac/Head
+
+
+func _init():
+	boss_name = "Pećinac 2"
+	boss_id = "pecinac"
+	phase = 2
 
 func _ready():
+	beard.set_as_toplevel(true)
 	for i in 6:
 		points.append(Vector2())
 
 func _process(delta):
-	$Head.global_position = get_global_mouse_position()
-	points[0] = get_global_mouse_position() + Vector2(-20,86)
+	points[0] = head.global_position + Vector2(-20,86)
 	for i in range(1,points.size()):
 		points[i].y += gravity*delta
 		var last_point = points[i-1] as Vector2
@@ -20,5 +28,5 @@ func _process(delta):
 		var angle = point.angle_to_point(last_point)
 		var dist = point.distance_to(last_point)
 		points[i] = last_point+Vector2.RIGHT.rotated(angle)*min(p_length,dist)
-	$Line2D.points = PoolVector2Array(points)
-	$Head.rotation = points[0].angle_to_point(points[1]) + PI/2
+	beard.points = PoolVector2Array(points)
+	head.rotation = points[0].angle_to_point(points[1]) + PI/2

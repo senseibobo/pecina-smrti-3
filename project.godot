@@ -89,6 +89,7 @@ Tools="*res://game/tools.gd"
 
 [debug]
 
+settings/fps/force_fps=300
 gdscript/warnings/unused_variable=false
 gdscript/warnings/shadowed_variable=false
 gdscript/warnings/unused_argument=false

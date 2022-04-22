@@ -1,6 +1,6 @@
 extends Attack
 
-const wave_scene = preload("res://bosses/pecinac/2/attacks/1/wave.tscn")
+const laser_scene = preload("res://bosses/pecinac/2/attacks/lasereyes/laser.tscn")
 
 func _init():
 	easy = {
@@ -13,49 +13,38 @@ func _init():
 	}
 	vars = [easy,hard][Game.difficulty]
 
-func attack(boss : Boss):
-	boss.cast_spell(Color.aquamarine)
-	var disappearing = randi()%3
-	for i in range(3):
-		print(i)
-		var wave = wave_scene.instance()
-		wave.global_position = Vector2(192+i*384,-400)
-		boss.add_child(wave)
-		move_wave(wave)
-		if disappearing != i:
-			disappear(wave)
-	yield(Tools.timer(1.0,boss),"timeout")
-	boss.stop_casting()
-	boss.emit_signal("attack_finished")
+var time: float = 0.0
+var laser_rotation: float = 0.0
+var laser1
+var laser2
+var eye1
+var eye2
+
+func attack(boss):
+	eye1 = boss.boss_node.get_node("Head/Eye1")
+	eye2 = boss.boss_node.get_node("Head/Eye2")
+	laser1 = laser_scene.instance()
+	laser1.set_as_toplevel(true)
+	eye1.add_child(laser1)
+	laser2 = laser_scene.instance()
+	laser2.set_as_toplevel(true)
+	eye2.add_child(laser2)
+	#boss.emit_signal("attack_finished")
+
+var phase = rand_range(0,TAU)
+var frequency = rand_range(1.05,1.15)
+
+func process(delta,boss):
+	time += delta
+	boss.boss_node.global_position.x = sin(time)*476 + 576
+	boss.boss_node.global_position.y = 100+sin(time*1.5)*60
+	var dest = Vector2(sin(time*frequency+phase)*476+576,600)
+	laser_rotation = dest.angle_to_point(boss.boss_node.global_position)
+	if is_instance_valid(laser1):
+		laser1.rotation = laser_rotation+0.13
+		laser2.rotation = laser_rotation-0.13
+		laser1.global_position = eye1.global_position
+		laser2.global_position = eye2.global_position
+
 	
-		
-func disappear(wave):
-	wave.get_node("CollisionShape2D").set_deferred("disabled",true)
-	yield(Tools.timer(0.5,wave),"timeout")
-	yield(Tools.tween(
-		wave,
-		"modulate",
-		wave.modulate*Color(1,1,1,1),
-		wave.modulate*Color(1,1,1,0),
-		1.0,
-		Tween.TRANS_CUBIC,
-		Tween.EASE_OUT
-	),"tween_all_completed")
-
-func move_wave(wave):
-	yield(Tools.tween(
-		wave,
-		"global_position",
-		wave.global_position,
-		wave.global_position + Vector2.DOWN*1500,
-		2.0,
-		Tween.TRANS_QUAD,
-		Tween.EASE_OUT_IN,
-		true
-	),"tween_all_completed")
-	
-
-
-
-
 
