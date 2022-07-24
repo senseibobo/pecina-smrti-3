@@ -41,3 +41,4 @@ position = Vector2( 600, 203 )
 
 [node name="RocketLauncher" parent="traps" instance=ExtResource( 3 )]
 position = Vector2( 458, 303 )
+difficulty = 2

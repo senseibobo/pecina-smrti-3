@@ -13,6 +13,11 @@ script = ExtResource( 2 )
 shape = SubResource( 1 )
 disabled = true
 
-[node name="Sprite" type="Sprite" parent="CollisionShape2D"]
+[node name="Sprite" type="TextureRect" parent="CollisionShape2D"]
 visible = false
+margin_left = -18.0
+margin_top = -18.0
+margin_right = 18.0
+margin_bottom = 18.0
 texture = ExtResource( 1 )
+stretch_mode = 2

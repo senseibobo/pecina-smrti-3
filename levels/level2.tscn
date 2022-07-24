@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/tilesets/tileset.tres" type="TileSet" id=2]
@@ -10,6 +10,10 @@
 [ext_resource path="res://levels/other/appearingfloor/appearingfloor.tscn" type="PackedScene" id=8]
 [ext_resource path="res://levels/other/box/box.tscn" type="PackedScene" id=9]
 [ext_resource path="res://levels/tilesets/spikeset.tres" type="TileSet" id=10]
+[ext_resource path="res://levels/traps/spikes/spikes.tscn" type="PackedScene" id=11]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 267, 18 )
 
 [node name="World" type="Node2D"]
 
@@ -31,7 +35,7 @@ tile_data = PoolIntArray( -524289, 0, 0, -458753, 0, 0, -393217, 0, 0, -327681, 
 tile_set = ExtResource( 10 )
 cell_size = Vector2( 36, 36 )
 format = 1
-tile_data = PoolIntArray( 1114122, 0, 0, 1114125, 0, 0, 1114128, 0, 0, 1114131, 0, 0, 1114134, 0, 0 )
+tile_data = PoolIntArray( 1114122, 0, 0, 1114125, 0, 0 )
 
 [node name="AncientFire" parent="TileMap2" instance=ExtResource( 5 )]
 position = Vector2( 432, 640 )
@@ -48,8 +52,14 @@ trigger_trap_name = "AppearingFloor"
 
 [node name="AppearingFloor" parent="traps" instance=ExtResource( 8 )]
 position = Vector2( 630, 414 )
-scale = Vector2( 15, 1 )
 disappearing = true
+
+[node name="CollisionShape2D" parent="traps/AppearingFloor" index="0"]
+shape = SubResource( 1 )
+
+[node name="Sprite" parent="traps/AppearingFloor/CollisionShape2D" index="0"]
+margin_left = -272.0
+margin_right = 272.0
 
 [node name="Box" parent="traps" instance=ExtResource( 9 )]
 position = Vector2( 189, 369 )
@@ -62,3 +72,17 @@ difficulty = 2
 position = Vector2( 863, 821 )
 rotation = 3.14159
 difficulty = 2
+
+[node name="Spikes" parent="traps" instance=ExtResource( 11 )]
+position = Vector2( 576, 630 )
+difficulty = 2
+
+[node name="Spikes2" parent="traps" instance=ExtResource( 11 )]
+position = Vector2( 672, 630 )
+difficulty = 2
+
+[node name="Spikes3" parent="traps" instance=ExtResource( 11 )]
+position = Vector2( 768, 630 )
+difficulty = 2
+
+[editable path="traps/AppearingFloor"]

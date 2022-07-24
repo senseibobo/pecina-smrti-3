@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://levels/tilesets/spikeset.tres" type="TileSet" id=1]
 [ext_resource path="res://levels/tilesets/tileset.tres" type="TileSet" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://levels/other/gravball/gravball.tscn" type="PackedScene" id=6]
 [ext_resource path="res://levels/other/appearingfloor/appearingfloor.tscn" type="PackedScene" id=7]
 [ext_resource path="res://levels/traps/deathball/deathball.tscn" type="PackedScene" id=8]
+[ext_resource path="res://levels/other/floor/floor.tscn" type="PackedScene" id=9]
 
 [node name="World" type="Node2D"]
 
@@ -39,6 +40,26 @@ position = Vector2( 27, 368 )
 [node name="AppearingFloor" parent="traps" instance=ExtResource( 7 )]
 position = Vector2( 756, 558 )
 disappearing = true
+
+[node name="Floor" parent="traps/AppearingFloor" instance=ExtResource( 9 )]
+position = Vector2( -91, -57 )
+difficulty = 1
+
+[node name="Floor2" parent="traps/AppearingFloor" instance=ExtResource( 9 )]
+position = Vector2( -59, -57 )
+difficulty = 1
+
+[node name="Floor3" parent="traps/AppearingFloor" instance=ExtResource( 9 )]
+position = Vector2( -27, -57 )
+difficulty = 1
+
+[node name="Floor4" parent="traps/AppearingFloor" instance=ExtResource( 9 )]
+position = Vector2( 5, -57 )
+difficulty = 1
+
+[node name="Floor5" parent="traps/AppearingFloor" instance=ExtResource( 9 )]
+position = Vector2( 37, -57 )
+difficulty = 1
 
 [node name="Gravball" parent="traps" instance=ExtResource( 6 )]
 position = Vector2( 414, 378 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://levels/tilesets/spikeset.tres" type="TileSet" id=1]
 [ext_resource path="res://levels/tilesets/tileset.tres" type="TileSet" id=2]
@@ -11,6 +11,9 @@
 [ext_resource path="res://textures/background.png" type="Texture" id=9]
 [ext_resource path="res://levels/traps/shuriken/shuriken.tscn" type="PackedScene" id=10]
 [ext_resource path="res://levels/traps/star/star.tscn" type="PackedScene" id=11]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 253, 91 )
 
 [node name="World" type="Node2D"]
 
@@ -41,6 +44,11 @@ position = Vector2( 27, 368 )
 
 [node name="Gravball" parent="traps" instance=ExtResource( 6 )]
 position = Vector2( 378, 522 )
+difficulty = 2
+
+[node name="Gravball2" parent="traps" instance=ExtResource( 6 )]
+position = Vector2( 598, 581 )
+difficulty = 1
 
 [node name="Box" parent="traps" instance=ExtResource( 4 )]
 position = Vector2( 522, 414 )
@@ -52,8 +60,16 @@ trigger_trap_name = "AppearingFloor"
 
 [node name="AppearingFloor" parent="traps" instance=ExtResource( 7 )]
 position = Vector2( 1044, 270 )
-scale = Vector2( 14, 5 )
 disappearing = true
+
+[node name="CollisionShape2D" parent="traps/AppearingFloor" index="0"]
+shape = SubResource( 1 )
+
+[node name="Sprite" parent="traps/AppearingFloor/CollisionShape2D" index="0"]
+margin_left = -252.0
+margin_top = -90.0
+margin_right = 252.0
+margin_bottom = 90.0
 
 [node name="BoxButton2" parent="traps" instance=ExtResource( 5 )]
 position = Vector2( 200, 181 )
@@ -98,3 +114,5 @@ speed = 0.0
 
 [node name="AncientFire" parent="." instance=ExtResource( 8 )]
 position = Vector2( 162, 88 )
+
+[editable path="traps/AppearingFloor"]

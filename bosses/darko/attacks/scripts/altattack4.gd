@@ -9,9 +9,9 @@ func _init():
 		"pre_delay" : 0.2,
 		"post_delay" : 1.4
 	}
-	vars = [easy,hard][Game.difficulty]
+	vars = [easy,hard][State.state["difficulty"]]
 
-func attack(boss):
+func attack(boss): # meteor throw
 	yield(boss.relocate_to(Vector2(576,50)),"tween_all_completed")
 	for i in range(5):
 		var rock = preload("res://bosses/darko/attacks/ancientrock/ancientrock.tscn").instance()

@@ -13,9 +13,10 @@ func _init():
 	phase = 1
 	
 	
-func launch_bloodball(pos : Vector2, rot = null,target = Game.get_player()):
+func launch_bloodball(pos : Vector2, rot = null,target = Game.get_player(), prepare: bool = false):
 	var bloodball = preload("res://bosses/darko/attacks/first/bloodball.tscn").instance()
 	bloodball.global_position = pos
+	bloodball.prepare = prepare
 	Game.get_world().add_child(bloodball)
 	if target != null:
 		bloodball.target = target
@@ -28,6 +29,19 @@ func launch_bloodball(pos : Vector2, rot = null,target = Game.get_player()):
 	return bloodball
 	
 	
+func choose_attack():
+	#return attacks[2]
+	if attacks.size() == 1:
+		return attacks[0]
+	var a = range(attacks.size())
+	var old = attack_index
+	a.erase(attack_index)
+	if attack_index == 3:
+		a.erase(2)
+	attack_index = a[randi()%a.size()]
+	print("chose attack " + str(attack_index) + ", previous was " + str(old) + " array was " + str(a))
+	return attacks[attack_index]
+	
 func create_lasergun(pos,rot,prep,time,scale = Vector2(1,1)):
 	var lasergun = preload("res://bosses/darko/attacks/second/lasergun.tscn").instance()
 	lasergun.global_position = pos
@@ -39,7 +53,7 @@ func create_lasergun(pos,rot,prep,time,scale = Vector2(1,1)):
 	
 	
 func next_phase_condition():
-	return Game.fires_collected >= 14
+	return State.state["fires_collected"] >= 9
 	
 	
 func steal_fire():

@@ -18,3 +18,7 @@ func cast_spell(color : Color):
 func stop_casting():
 	spell_hand.visible = false
 	sprite.frame = 0
+
+func baci_povez():
+	$Povez.moving = true
+	$Povez.visible = true

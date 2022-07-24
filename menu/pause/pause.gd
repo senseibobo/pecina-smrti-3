@@ -16,7 +16,7 @@ func reset_deaths():
 func add_death():
 	level_deaths += 1
 	print(level_deaths)
-	if level_deaths >= deaths_for_skip and Game.current_level != Game.LEVEL_COUNT:
+	if level_deaths >= deaths_for_skip and State.state["current_level"] != Game.LEVEL_COUNT:
 		$Control/CenterContainer/VBoxContainer/SkipLevel/Button.visible = true
 		
 func toggle_pause():

@@ -13,7 +13,7 @@ func _init():
 		"ball_count" : 15,
 		"attack_time" : 1.0,
 	}
-	vars = [easy,hard][Game.difficulty]
+	vars = [easy,hard][State.state["difficulty"]]
 
 func attack(boss): #go from one side to almost the other and shower the floor with balls
 	var dir = randi()%2*2-1

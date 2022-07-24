@@ -12,7 +12,7 @@ export var disappearing : bool = true #OPREZNO
 export var random : bool = true
 
 func _ready():
-	if difficulty & (Game.difficulty+1) == 0:
+	if difficulty & int(State.state["difficulty"]+1) == 0:
 		queue_free()
 		return
 	color.a = 0

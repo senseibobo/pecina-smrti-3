@@ -124,7 +124,7 @@ shader_param/progress = 0.0
 [node name="Darko" type="Node2D"]
 script = ExtResource( 2 )
 max_health = 40.0
-attack_paths = [ "res://bosses/darko/attacks/scripts/attack1.gd", "res://bosses/darko/attacks/scripts/attack2.gd", "res://bosses/darko/attacks/scripts/attack3.gd", "res://bosses/darko/attacks/scripts/attack4.gd", "res://bosses/darko/attacks/scripts/attack1.gd" ]
+attack_paths = [ "res://bosses/darko/attacks/scripts/attack1.gd", "res://bosses/darko/attacks/scripts/attack2.gd", "res://bosses/darko/attacks/scripts/attack3.gd", "res://bosses/darko/attacks/scripts/attack4.gd", "res://bosses/darko/attacks/scripts/attack5.gd" ]
 path_to_boss_node = NodePath("Darko")
 next_phase = ExtResource( 9 )
 entrance_animation = "res://bosses/darko/animations/entrance.tres"

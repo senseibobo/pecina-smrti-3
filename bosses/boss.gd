@@ -37,7 +37,7 @@ var animplayer := AnimationPlayer.new()
 var attack
 
 func _ready():
-	if Game.boss_phase[boss_id] > phase:
+	if State.state["boss_phase"][boss_id] > phase:
 		spawn_next_phase()
 		return
 	load_attacks()
@@ -123,7 +123,7 @@ func begin_next_phase():
 	animplayer.play("next_phase")
 	relocate_to(Vector2(576,244),0.2)
 	yield(animplayer,"animation_finished")
-	Game.boss_phase[boss_id] += 1
+	State.state["boss_phase"][boss_id] += 1
 	Audio.seek(next_phase_sound_skip_at_end)
 	spawn_next_phase()
 

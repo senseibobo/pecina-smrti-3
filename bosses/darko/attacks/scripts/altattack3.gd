@@ -9,7 +9,7 @@ func _init():
 		"pre_delay" : 0.4,
 		"post_delay" : 0.0
 	}
-	vars = [easy,hard][Game.difficulty]
+	vars = [easy,hard][State.state["difficulty"]]
 	
 func attack(boss): # best attack
 	boss.relocate_to(Vector2(576,150),0.2)

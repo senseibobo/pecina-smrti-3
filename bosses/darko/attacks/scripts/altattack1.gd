@@ -19,9 +19,9 @@ func _init():
 		"rotation_speed" : 0.45,
 		"bullet_speed" : 400.0
 	}
-	vars = [easy,hard][Game.difficulty]
+	vars = [easy,hard][State.state["difficulty"]]
 
-func attack(boss): # bullet hell 1
+func attack(boss): # bullet hell 1 fuck
 	var current_angle = 0
 	var increment : float = [-1,1][randi()%2]
 	yield(boss.relocate_to(Vector2(576-increment*500,100)),"tween_all_completed")

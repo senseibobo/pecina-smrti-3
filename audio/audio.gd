@@ -43,7 +43,7 @@ func play_music(music : String, start_position : float = 0.0, loop = false, star
 	
 func _ready():
 	set_volume_db(-28.75)
-	if not Game.current_level in [15,25]:
+	if not State.state["current_level"] in [10,20]:
 		call_deferred("play_music","paradox",0,true,88.12,197.2)
 	for i in range(1,11):
 		death_sfx.append(load("res://audio/sfx/death/death%s.wav"%str(i)))
@@ -78,7 +78,6 @@ var song_loop_positions = {
 
 func set_volume_db(volume):
 	.set_volume_db(volume)
-	print("A")
 
 func get_level_music(level):
 	if not level in [15,25]:

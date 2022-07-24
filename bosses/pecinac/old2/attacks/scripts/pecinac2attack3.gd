@@ -11,7 +11,7 @@ func _init():
 		"pre_delay" : 0.6,
 		"post_delay" : 0.0,
 	}
-	vars = [easy,hard][Game.difficulty]
+	vars = [easy,hard][State.state["difficulty"]]
 
 func attack(boss : Boss):
 	boss.cast_spell(Color.aquamarine)

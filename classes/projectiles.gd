@@ -17,6 +17,7 @@ export var speed : float
 export var direction : Vector2
 export var lifetime : float = 10.0
 export var non_destructible_time : float = 0.2
+export var moving : bool = true
 
 export var player_only : bool = false
 
@@ -59,7 +60,8 @@ func destroy():
 func _process(delta):
 	lifetime -= delta
 	if lifetime <= 0: destroy()
-	global_position += direction.normalized()*speed*delta
+	if moving:
+		global_position += direction.normalized()*speed*delta
 	
 func create_constant_particles():
 	constant_particles = constant_particles_scene.instance()

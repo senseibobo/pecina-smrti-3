@@ -6,20 +6,22 @@ const step : float = 52.0
 func _init():
 	easy = {
 		"pre_delay" : 0.5,
-		"post_delay" : 1.0,
+		"post_delay" : 1.2,
+		"count" : 3
 	}
 	hard = {
-		"pre_delay" : 0.5,
-		"post_delay" : 1.0,
+		"pre_delay" : 0.4,
+		"post_delay" : 1.1,
+		"count" : 5
 	}
-	vars = [easy,hard][Game.difficulty]
+	vars = [easy,hard][State.state["difficulty"]]
 
-func attack(boss):
+func attack(boss): # pillars
 	boss.cast_spell(Color.blue)
 	var pillars = []
 	var xsteps : Array = []
 	var ysteps : Array = []
-	for i in range(7):
+	for i in range(vars["count"]):
 		var x : float
 		var y : float
 		var pillar = spiked_pillar_scene.instance()

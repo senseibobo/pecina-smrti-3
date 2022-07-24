@@ -21,7 +21,7 @@ func _init():
 		"delay1" : 0.1,
 		"delay2" : 0.03,
 	}
-	vars = [easy,hard][Game.difficulty]
+	vars = [easy,hard][State.state["difficulty"]]
 	
 func attack(boss): # laser and bloodball spam attack
 	yield(boss.relocate_to(Vector2(576,200)),"tween_all_completed")

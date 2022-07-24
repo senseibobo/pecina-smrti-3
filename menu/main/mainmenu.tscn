@@ -81,15 +81,18 @@ text = "Quit"
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Play"]
 margin_left = 426.0
 margin_top = 209.0
 margin_right = 725.0
 margin_bottom = 439.0
+
+[node name="Continue" type="Button" parent="Play/VBoxContainer"]
+visible = false
+margin_right = 299.0
+margin_bottom = 74.2476
+text = "Continue"
 
 [node name="NewGame" type="Button" parent="Play/VBoxContainer"]
 margin_right = 299.0
@@ -166,6 +169,7 @@ margin_right = 406.0
 margin_bottom = 110.0
 rect_min_size = Vector2( 256, 0 )
 step = 2.5
+value = 50.0
 script = ExtResource( 7 )
 
 [node name="Fullscreen" type="Button" parent="Options/VBoxContainer"]
@@ -208,7 +212,8 @@ text = "Back"
 [connection signal="pressed" from="Main/VBoxContainer/VBoxContainer/Play" to="." method="change_menu" binds= [ "Play" ]]
 [connection signal="pressed" from="Main/VBoxContainer/VBoxContainer/Options" to="." method="change_menu" binds= [ "Options" ]]
 [connection signal="pressed" from="Main/VBoxContainer/VBoxContainer/Quit" to="." method="quit_game"]
-[connection signal="pressed" from="Play/VBoxContainer/NewGame" to="." method="change_menu" binds= [ "NewGame" ]]
+[connection signal="pressed" from="Play/VBoxContainer/Continue" to="." method="continue_game"]
+[connection signal="pressed" from="Play/VBoxContainer/NewGame" to="." method="new_game"]
 [connection signal="pressed" from="Play/VBoxContainer/SelectLevel" to="." method="change_menu" binds= [ "SelectLevel" ]]
 [connection signal="pressed" from="Play/VBoxContainer/Back" to="." method="change_menu" binds= [ "Main" ]]
 [connection signal="pressed" from="NewGame/VBoxContainer/Easy" to="." method="easy"]

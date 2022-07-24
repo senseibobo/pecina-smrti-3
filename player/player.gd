@@ -22,6 +22,7 @@ var old_move : float = 0
 var fires_collected : int = 0
 
 func _ready():
+	$Sprite2.visible = State.state["povez"]
 	start()
 
 func start():
@@ -41,9 +42,9 @@ func _physics_process(delta):
 	_sprites()
 	global_position.y = wrapf(global_position.y,-100,820)
 	if global_position.x > 1200 and not SceneManager.transitioning:
+		State.state["fires_collected"] += fires_collected
 		Game.pass_level()
 		unkillable = true
-		Game.fires_collected += fires_collected
 
 func flip_gravity():
 	vec_up = -vec_up
@@ -73,10 +74,10 @@ func _movement(delta):
 		move_and_collide(vec_up*abs(velocity.y)*delta)
 		velocity.y = -velocity.y
 	old_move = move
-	
-	if is_on_floor():
+		
+	if is_on_floor(): 
 		velocity.y = 0
-		if Input.is_action_pressed("move_up"): 
+		if Input.is_action_pressed("move_up"):
 			velocity.y = vec_up.y*JUMP_FORCE
 		
 	for i in get_slide_count():
@@ -88,15 +89,19 @@ func _movement(delta):
 		if collision.collider.is_in_group("Death"):
 			death()
 	
-			
 func death():
 	if dying or unkillable: return
 	dying = true
 	frozen = true
-	Game.deaths += 1
+	State.state["deaths"] += 1
+	State.save_game()
 	Game.emit_signal("player_death")
 	Game.update_deaths()
 	Game.shake_screen(20,0.7)
 	$Timer.start(0.15); yield($Timer,"timeout")
 	Game.restart_level()
 	Audio.death_sound()
+
+func acquire_povez():
+	$Sprite2.visible = true
+	State.state["povez"] = true

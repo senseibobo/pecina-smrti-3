@@ -19,7 +19,7 @@ func _init():
 		"initial_velocity" : 200.0,
 		"delay" : 0.15
 	}
-	vars = [easy,hard][Game.difficulty]
+	vars = [easy,hard][State.state["difficulty"]]
 
 func attack(boss): #side to side 5 balls
 	var dir = randi()%2
@@ -31,7 +31,7 @@ func attack(boss): #side to side 5 balls
 			if j == missing: continue
 			var pos = Vector2(30+dir*1092,160+j*80)
 			var rot = 0.0 if dir == 0 else PI
-			var bloodball = boss.launch_bloodball(pos,rot,null)
+			var bloodball = boss.launch_bloodball(pos,rot,null,true)
 			bloodball.speed = vars["initial_velocity"]
 			bloodball.acceleration = vars["acceleration"]
 		yield(Tools.timer(vars["delay"],boss), "timeout")

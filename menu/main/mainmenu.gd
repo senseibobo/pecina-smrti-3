@@ -2,18 +2,22 @@ extends Control
 
 
 onready var current_menu = $Main
-	
+
+func _ready():
+	$Play/VBoxContainer/Continue.visible = State.save_exists()
+
 func easy():
-	Game.difficulty = Game.DIFFICULTY.EASY
+	State.state["difficulty"] = Game.DIFFICULTY.EASY
 	Game.start_game()
 
 
 func hard():
-	Game.difficulty = Game.DIFFICULTY.HARD
+	State.state["difficulty"] = Game.DIFFICULTY.HARD
 	Game.start_game()
 
 
 func change_menu(new_menu : String) -> void:
+	current_menu.rect_position = Vector2()
 	yield(
 		Tools.tween(
 			current_menu,
@@ -30,6 +34,7 @@ func change_menu(new_menu : String) -> void:
 	current_menu.visible = false
 	current_menu = get_node(new_menu)
 	
+	current_menu.rect_position = Vector2(-1152,0)
 	Tools.tween(
 		current_menu,
 		"rect_position",
@@ -51,4 +56,11 @@ func fullscreen():
 	OS.window_fullscreen = !OS.window_fullscreen
 
 
+func continue_game() -> void:
+	State.load_game()
+	Game.start_game()
 
+
+func new_game() -> void:
+	change_menu("NewGame")
+	State.new_game()

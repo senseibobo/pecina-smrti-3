@@ -6,7 +6,7 @@ var idle_duration = 1
 onready var bhm = get_node("BulletHellManager")
 
 func _init():
-	boss_name = "Darko 2"
+	boss_name = "Ljuti Darko"
 	boss_id = "darko"
 	phase = 2
 		

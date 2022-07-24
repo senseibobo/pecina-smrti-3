@@ -8,11 +8,7 @@ enum DIFFICULTY {
 signal scene_changed
 signal player_death
 signal level_passed
-
-var current_level : int = 1
-var deaths : int = 0
-var fires_collected : int = 0
-var difficulty : int = DIFFICULTY.HARD
+signal game_finished
 
 const LEVEL_COUNT : int = 20
 
@@ -26,10 +22,7 @@ var pause
 var camera
 var mobilecontrols
 
-var boss_phase = {
-	"darko" : 2,
-	"pecinac" : 2
-}
+
 
 func _ready():
 	randomize()
@@ -41,8 +34,8 @@ func return_to_main_menu():
 	camera.queue_free()
 	pause.queue_free()
 
-func start_game(level : int = 1):
-	current_level = level
+func start_game():
+	var level = State.state["current_level"]
 	yield(SceneManager.transition_to(load("res://levels/level%d.tscn" % level)),"transitioned")
 	hud = hud_scene.instance()
 	pause = pause_scene.instance()
@@ -69,16 +62,18 @@ func complete():
 	hud.get_node("Control/LevelLabel").queue_free()
 
 func restart_level():
-	SceneManager.set_current_scene(load("res://levels/level%s.tscn"%str(current_level)))
+	var scene = load("res://levels/level%s.tscn"%str(State.state["current_level"]))
+	SceneManager.set_current_scene(scene)
 	create_death_particles()
 	
 func pass_level():
-	current_level += 1
-	var music = Audio.get_level_music(current_level)
+	State.state["current_level"] += 1
+	var music = Audio.get_level_music(State.state["current_level"])
 	if music != "":
 		Audio.play_music(music)
-	SceneManager.transition_to(load("res://levels/level%s.tscn"%str(current_level)))
+	SceneManager.transition_to(load("res://levels/level%s.tscn"%str(State.state["current_level"])))
 	emit_signal("level_passed")
+	State.save_game()
 
 
 func update_deaths():
@@ -93,7 +88,7 @@ func get_player() -> KinematicBody2D:
 	var player = get_node_or_null("/root/World/Player") as KinematicBody2D
 	return player
 
-func get_player_position() -> KinematicBody2D:
+func get_player_position() -> Vector2:
 	var player = get_player()
 	return player.global_position
 
@@ -101,8 +96,8 @@ func create_death_particles():
 	var player = get_player()
 	var death = preload("res://managers/particles/playerdeath.tscn").instance()
 	var blood = preload("res://managers/particles/playerblood.tscn").instance()
-	death.set_name("DEATH%s"%str(deaths))
-	blood.set_name("BLOOD%s"%str(deaths))
+	death.set_name("DEATH%s"%str(State.state["deaths"]))
+	blood.set_name("BLOOD%s"%str(State.state["deaths"]))
 	death.global_position = player.global_position
 	blood.global_position = player.global_position
 	add_child(death)

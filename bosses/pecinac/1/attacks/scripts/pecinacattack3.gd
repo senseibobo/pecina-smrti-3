@@ -7,18 +7,20 @@ func _init():
 	easy = {
 		"pre_delay" : 0.0,
 		"post_delay" : 1.0,
+		"distance_from_center": 726,
 	}
 	hard = {
 		"pre_delay" : 0.0,
 		"post_delay" : 1.0,
+		"distance_from_center": 676,
 	}
-	vars = [easy,hard][Game.difficulty]
+	vars = [easy,hard][State.state["difficulty"]]
 
-func attack(boss):
+func attack(boss): # spike
 	boss.cast_spell(Color.purple)
 	var siljak = siljak_scene.instance()
 	var angle = rand_range(0,TAU)
-	var pos = Vector2(576,380) + Vector2.RIGHT.rotated(angle)*576
+	var pos = Vector2(576,380) + Vector2.RIGHT.rotated(angle)*vars["distance_from_center"]
 	siljak.rotation = angle + PI
 	siljak.global_position = pos
 	boss.add_child(siljak)

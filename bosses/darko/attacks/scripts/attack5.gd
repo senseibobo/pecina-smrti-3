@@ -17,7 +17,7 @@ func _init():
 		"laser_delay" : 0.15,
 		"additional_shots" : 6,
 	}
-	vars = [easy,hard][Game.difficulty]
+	vars = [easy,hard][State.state["difficulty"]]
 
 
 func attack(boss): #| | | | | | | laser

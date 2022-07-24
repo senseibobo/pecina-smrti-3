@@ -18,5 +18,4 @@ func set_appeared(appeared):
 		if child is CollisionShape2D:
 			child.call_deferred("set_disabled",!appeared)
 			for c in child.get_children():
-				if c is Sprite:
-					c.visible = appeared
+				c.visible = appeared

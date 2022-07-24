@@ -1,6 +1,6 @@
 extends Node2D
 
-export(int, FLAGS, "Easy","Hard") var difficulty = 3
+export(int, FLAGS, "Easy","Hard") var difficulty : int = 3
 
 var flying : bool = false
 var destination : Vector2
@@ -9,7 +9,7 @@ var speed = 1000
 
 
 func _ready():
-	if difficulty & (Game.difficulty+1) == 0:
+	if difficulty & int(State.state["difficulty"]+1) == 0:
 		queue_free()
 
 func _on_Area2D_body_entered(body):

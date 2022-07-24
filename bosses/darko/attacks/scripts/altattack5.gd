@@ -9,8 +9,8 @@ func _init():
 		"pre_delay" : 0.5,
 		"post_delay" : 2.0
 	}
-	vars = [easy,hard][Game.difficulty]
-func attack(boss):
+	vars = [easy,hard][State.state["difficulty"]]
+func attack(boss): # white rays
 	var num := 12.0
 	var rand = rand_range(-0.1,0.1)
 	var ln := 25.0
