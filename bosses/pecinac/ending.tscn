@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=54 format=2]
 
 [ext_resource path="res://images/1.png" type="Texture" id=1]
 [ext_resource path="res://images/6.png" type="Texture" id=2]
@@ -12,6 +12,40 @@
 [ext_resource path="res://bosses/pecinac/ending.gd" type="Script" id=10]
 [ext_resource path="res://images/neutral1.png" type="Texture" id=11]
 [ext_resource path="res://images/neutral2.png" type="Texture" id=12]
+[ext_resource path="res://images/good/g13.png" type="Texture" id=13]
+[ext_resource path="res://images/good/g1.png" type="Texture" id=14]
+[ext_resource path="res://images/good/g3.png" type="Texture" id=15]
+[ext_resource path="res://images/good/g9.png" type="Texture" id=16]
+[ext_resource path="res://images/good/g8.png" type="Texture" id=17]
+[ext_resource path="res://images/good/g11.png" type="Texture" id=18]
+[ext_resource path="res://images/good/g10.png" type="Texture" id=19]
+[ext_resource path="res://images/good/g12.png" type="Texture" id=20]
+[ext_resource path="res://images/good/g4.png" type="Texture" id=21]
+[ext_resource path="res://images/good/g5.png" type="Texture" id=22]
+[ext_resource path="res://images/good/g6.png" type="Texture" id=23]
+[ext_resource path="res://images/good/snajper.png" type="Texture" id=24]
+[ext_resource path="res://images/good/g7.png" type="Texture" id=25]
+[ext_resource path="res://images/good/g2.png" type="Texture" id=26]
+[ext_resource path="res://images/badpovez/4.png" type="Texture" id=27]
+[ext_resource path="res://images/badpovez/2.png" type="Texture" id=28]
+[ext_resource path="res://images/badpovez/9,2.png" type="Texture" id=29]
+[ext_resource path="res://images/badpovez/7.png" type="Texture" id=30]
+[ext_resource path="res://images/badpovez/1.png" type="Texture" id=31]
+[ext_resource path="res://images/badpovez/3.png" type="Texture" id=32]
+[ext_resource path="res://images/badpovez/6.png" type="Texture" id=33]
+[ext_resource path="res://images/badpovez/5.png" type="Texture" id=34]
+[ext_resource path="res://images/badpovez/13.png" type="Texture" id=35]
+[ext_resource path="res://images/best/2.png" type="Texture" id=36]
+[ext_resource path="res://images/best/4.png" type="Texture" id=37]
+[ext_resource path="res://images/best/5.png" type="Texture" id=38]
+[ext_resource path="res://images/best/3.png" type="Texture" id=39]
+[ext_resource path="res://images/best/6.png" type="Texture" id=40]
+[ext_resource path="res://images/best/kraj.png" type="Texture" id=41]
+[ext_resource path="res://images/best/10.png" type="Texture" id=42]
+[ext_resource path="res://images/best/izmedju 6 i 7 povez.png" type="Texture" id=43]
+[ext_resource path="res://images/best/8.png" type="Texture" id=44]
+[ext_resource path="res://images/best/7.png" type="Texture" id=45]
+[ext_resource path="res://images/best/9.png" type="Texture" id=46]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -44,6 +78,54 @@ tracks/0/keys = {
 "values": [ ExtResource( 1 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ]
 }
 
+[sub_resource type="Animation" id=5]
+resource_name = "badpovez"
+length = 15.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.51774, 3, 3.3, 4.7, 6.5, 8.6, 9.5, 12 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 31 ), ExtResource( 28 ), ExtResource( 32 ), ExtResource( 27 ), ExtResource( 34 ), ExtResource( 33 ), ExtResource( 30 ), ExtResource( 4 ), ExtResource( 5 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "best"
+length = 27.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.51774, 3, 3.3, 4.7, 6.5, 8.6, 9.5, 10, 10.6, 11.4, 12.9, 15.7, 19.5, 21.6, 22.2, 22.7, 24 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 31 ), ExtResource( 28 ), ExtResource( 32 ), ExtResource( 27 ), ExtResource( 34 ), ExtResource( 33 ), ExtResource( 14 ), ExtResource( 36 ), ExtResource( 39 ), ExtResource( 37 ), ExtResource( 38 ), ExtResource( 40 ), ExtResource( 43 ), ExtResource( 45 ), ExtResource( 44 ), ExtResource( 46 ), ExtResource( 42 ), ExtResource( 41 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "good"
+length = 27.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.51774, 3, 3.3, 4.7, 6.5, 8.6, 9.5, 10, 10.6, 11.4, 12.9, 15.7, 19.5, 21.6, 22.2, 22.7, 24, 24.3, 25 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 1 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 2 ), ExtResource( 14 ), ExtResource( 26 ), ExtResource( 15 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 17 ), ExtResource( 16 ), ExtResource( 19 ), ExtResource( 18 ), ExtResource( 20 ), ExtResource( 13 ) ]
+}
+
 [sub_resource type="Animation" id=3]
 resource_name = "neutral"
 length = 15.0
@@ -60,6 +142,22 @@ tracks/0/keys = {
 "values": [ ExtResource( 1 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 11 ), ExtResource( 12 ) ]
 }
 
+[sub_resource type="Animation" id=7]
+resource_name = "neutralpovez"
+length = 15.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.51774, 3, 3.3, 4.7, 6.5, 8.6, 9.5, 12 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 31 ), ExtResource( 28 ), ExtResource( 32 ), ExtResource( 27 ), ExtResource( 34 ), ExtResource( 33 ), ExtResource( 30 ), ExtResource( 29 ), ExtResource( 35 ) ]
+}
+
 [node name="Ending" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -74,4 +172,8 @@ expand = true
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 1 )
 anims/bad = SubResource( 2 )
+anims/badpovez = SubResource( 5 )
+anims/best = SubResource( 6 )
+anims/good = SubResource( 4 )
 anims/neutral = SubResource( 3 )
+anims/neutralpovez = SubResource( 7 )
