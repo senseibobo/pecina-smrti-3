@@ -130,7 +130,7 @@ death_animation = "res://bosses/darko/animations/death.tres"
 music = "murder_machine"
 music_start_time = 53.35
 music_loop_start = 53.35
-music_loop_end = 181.3
+music_loop_end = 181.15
 
 [node name="Darko" type="Node2D" parent="."]
 position = Vector2( 576, -100 )

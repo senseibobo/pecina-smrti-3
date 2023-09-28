@@ -30,7 +30,7 @@ func launch_bloodball(pos : Vector2, rot = null,target = Game.get_player(), prep
 	
 	
 func choose_attack():
-	#return attacks[2]
+	#return attacks[4]
 	if attacks.size() == 1:
 		return attacks[0]
 	var a = range(attacks.size())
@@ -41,15 +41,18 @@ func choose_attack():
 	attack_index = a[randi()%a.size()]
 	print("chose attack " + str(attack_index) + ", previous was " + str(old) + " array was " + str(a))
 	return attacks[attack_index]
-	
-func create_lasergun(pos,rot,prep,time,scale = Vector2(1,1)):
+
+onready var cs = get_tree().get_current_scene()
+
+func create_lasergun(pos,rot,prep,time,scale = Vector2(1,1),childof = cs):
 	var lasergun = preload("res://bosses/darko/attacks/second/lasergun.tscn").instance()
 	lasergun.global_position = pos
 	lasergun.rotation = deg2rad(rot)
 	lasergun.prep = prep
 	lasergun.time = time
 	lasergun.scale = scale
-	Game.get_world().add_child(lasergun)
+	#Game.get_world().add_child(lasergun)
+	childof.add_child(lasergun)
 	
 	
 func next_phase_condition():

@@ -1,6 +1,6 @@
 extends Node
 
-var default_state = {
+const default_state = {
 	"boss_phase" : {
 		"darko" : 1,
 		"pecinac" : 1
@@ -13,7 +13,7 @@ var default_state = {
 	"difficulty" : Game.DIFFICULTY.HARD
 }
 
-var state = default_state
+var state = default_state.duplicate(true)
 
 func save_game():
 	var string = JSON.print(state)
@@ -33,7 +33,7 @@ func load_game():
 		file.close()
 		
 func new_game():
-	state = default_state
+	state = default_state.duplicate(true)
 
 func save_exists():
 	var file = File.new()

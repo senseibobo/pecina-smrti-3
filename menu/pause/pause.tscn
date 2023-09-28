@@ -89,7 +89,8 @@ __meta__ = {
 margin_top = 59.0
 margin_right = 459.0
 margin_bottom = 110.0
-step = 0.0
+max_value = 1.0
+step = 0.01
 script = ExtResource( 4 )
 
 [node name="SkipLevel" type="VBoxContainer" parent="Control/CenterContainer/VBoxContainer"]

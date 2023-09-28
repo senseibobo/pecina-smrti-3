@@ -29,20 +29,18 @@ var music = {
 	"murder_machine" : "res://audio/music/murder_machine.ogg",
 	"the_fear" : "res://audio/music/the_fear.ogg"
 }
-
 func play_music(music : String, start_position : float = 0.0, loop = false, start = 0, end = 0):
 	if music != current_music:
 		stop()
 		stream = load(self.music[music])
 		play(start_position)
-		looping = loop
-		loop_start = start
-		loop_end = end
-		current_music = music
+	looping = loop
+	loop_start = start
+	loop_end = end
+	current_music = music
 	
 	
 func _ready():
-	set_volume_db(-28.75)
 	if not State.state["current_level"] in [10,20]:
 		call_deferred("play_music","paradox",0,true,88.12,197.2)
 	for i in range(1,11):
@@ -73,7 +71,8 @@ func stop_laser():
 var song_loop_positions = {
 	"paradox" : {"start" : 88.12, "end" : 197.2},
 	"darko" : {"start" : 28.7, "end" : 135.4},
-	"darko2" : {"start" : 53.35, "end" : 181.3}
+	"darko2" : {"start" : 53.35, "end" : 181.15},
+	"murder_machine" : {"start": 53.35, "end": 181.15}
 }
 
 func set_volume_db(volume):

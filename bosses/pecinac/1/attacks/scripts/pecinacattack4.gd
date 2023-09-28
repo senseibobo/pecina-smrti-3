@@ -7,13 +7,13 @@ func _init():
 		"pre_delay" : 0.3,
 		"post_delay" : 1.2,
 		"count": 4,
-		"firerate": 0.7
+		"firerate": 0.05
 	}
 	hard = {
 		"pre_delay" : 0.0,
 		"post_delay" : 0.8,
-		"count": 6,
-		"firerate": 0.1
+		"count": 11,
+		"firerate": 0.06
 	}
 	vars = [easy,hard][State.state["difficulty"]]
 

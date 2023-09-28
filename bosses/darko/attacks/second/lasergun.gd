@@ -13,10 +13,7 @@ func _ready():
 	$Particles2D.emitting = true
 
 func shot():
-	$Sprite.frame = 2
-	while true:
-		yield(Tools.timer(0.06,self),"timeout")
-		$Sprite.frame = int(not bool($Sprite.frame-2))+2
+	$Sprite.play("fire")
 
 func done():
 	queue_free()

@@ -11,6 +11,9 @@ max_health = 40.0
 attack_paths = [ "res://bosses/pecinac/2/attacks/scripts/pecinac2attack1.gd", "res://bosses/pecinac/2/attacks/scripts/pecinac2attack2.gd", "res://bosses/pecinac/2/attacks/scripts/pecinac2attack3.gd", "res://bosses/darko/attacks/scripts/attack3.gd" ]
 path_to_boss_node = NodePath("Pecinac")
 music = "murder_machine"
+music_start_time = 53.35
+music_loop_start = 53.35
+music_loop_end = 181.15
 
 [node name="Pecinac" type="Node2D" parent="."]
 position = Vector2( 576, 244 )

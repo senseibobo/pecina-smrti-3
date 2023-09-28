@@ -3,13 +3,14 @@
 [ext_resource path="res://font/cinzel.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://menu/dugmepritisnuto.png" type="Texture" id=2]
 [ext_resource path="res://menu/dugmenepritisnuto.png" type="Texture" id=3]
-[ext_resource path="res://menu/slidergrabber.png" type="Texture" id=4]
-[ext_resource path="res://menu/slidernesto.png" type="Texture" id=5]
+[ext_resource path="res://menu/slidernesto.png" type="Texture" id=4]
+[ext_resource path="res://menu/slidergrabber.png" type="Texture" id=5]
 [ext_resource path="res://menu/slidernestoprazno.png" type="Texture" id=6]
 
 [sub_resource type="StyleBoxTexture" id=12]
+texture = ExtResource( 3 )
 region_rect = Rect2( 0, 0, 84, 84 )
-margin_left = 7.11375
+margin_left = 10.4587
 margin_right = 7.46127
 margin_top = 7.44492
 margin_bottom = 7.50995
@@ -24,17 +25,21 @@ margin_right = 7.46127
 margin_top = 4.65461
 margin_bottom = 14.593
 
-[sub_resource type="StyleBoxTexture" id=16]
+[sub_resource type="StyleBoxTexture" id=21]
 texture = ExtResource( 2 )
 region_rect = Rect2( 0, 0, 73, 73 )
-margin_left = 5.73996
-margin_right = 8.21397
-margin_top = 7.92756
-margin_bottom = 7.82861
+margin_left = 11.4065
+margin_right = 7.46127
+margin_top = 4.65461
+margin_bottom = 14.593
 
 [sub_resource type="StyleBoxTexture" id=20]
-texture = ExtResource( 5 )
-region_rect = Rect2( 0, 0, 406, 32 )
+texture = ExtResource( 4 )
+region_rect = Rect2( -6.41045, -4.49265, 39.7357, 44.261 )
+margin_left = 16.038
+margin_right = 10.6386
+margin_top = 15.5257
+margin_bottom = 17.3721
 axis_stretch_horizontal = 1
 
 [sub_resource type="StyleBoxTexture" id=18]
@@ -60,10 +65,10 @@ Button/styles/disabled = SubResource( 12 )
 Button/styles/focus = SubResource( 17 )
 Button/styles/hover = SubResource( 15 )
 Button/styles/normal = SubResource( 15 )
-Button/styles/pressed = SubResource( 16 )
-HSlider/icons/grabber = ExtResource( 4 )
-HSlider/icons/grabber_disabled = ExtResource( 4 )
-HSlider/icons/grabber_highlight = ExtResource( 4 )
+Button/styles/pressed = SubResource( 21 )
+HSlider/icons/grabber = ExtResource( 5 )
+HSlider/icons/grabber_disabled = ExtResource( 5 )
+HSlider/icons/grabber_highlight = ExtResource( 5 )
 HSlider/icons/tick = null
 HSlider/styles/grabber_area = SubResource( 20 )
 HSlider/styles/grabber_area_highlight = SubResource( 20 )

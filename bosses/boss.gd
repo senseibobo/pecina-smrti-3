@@ -88,7 +88,6 @@ func load_attacks():
 		attacks.append(attack)
 
 func choose_attack():
-	#return attacks[2]
 	if attacks.size() == 1:
 		return attacks[0]
 	var a = range(attacks.size())
